@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elios 3 — Evaluador de Riesgo</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f4f0;color:#1a1a1a;min-height:100vh;padding:2rem 1rem}
+  .container{max-width:860px;margin:0 auto}
+  h1{font-size:22px;font-weight:600;margin-bottom:4px}
+  .subtitle{font-size:14px;color:#666;margin-bottom:2rem}
+  .logo{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+  .logo-badge{background:#d83a1e;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;letter-spacing:0.05em}
+  .section{background:#fff;border:1px solid #e0dfd8;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+  .section-title{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid #eee}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .field{display:flex;flex-direction:column;gap:5px}
+  .field label{font-size:12px;color:#555;font-weight:500}
+  select{width:100%;padding:8px 10px;font-size:13px;border:1px solid #d0cfc8;border-radius:7px;background:#fafaf8;color:#1a1a1a;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;cursor:pointer}
+  select:focus{outline:none;border-color:#d83a1e;box-shadow:0 0 0 3px rgba(216,58,30,0.1)}
+  .btn-calc{width:100%;padding:14px;font-size:15px;font-weight:600;background:#d83a1e;color:#fff;border:none;border-radius:10px;cursor:pointer;margin-top:0.75rem;letter-spacing:0.01em;transition:background 0.15s}
+  .btn-calc:hover{background:#b83018}
+  .btn-back{background:none;border:1px solid #d0cfc8;border-radius:7px;padding:7px 14px;font-size:13px;color:#555;cursor:pointer;margin-bottom:1.25rem;transition:background 0.1s}
+  .btn-back:hover{background:#f0ede8}
+  .result-view{display:none}
+  .risk-banner{border-radius:12px;padding:1.75rem;text-align:center;margin-bottom:1.25rem}
+  .risk-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;opacity:0.8}
+  .risk-level{font-size:40px;font-weight:700;letter-spacing:-0.01em}
+  .risk-sub{font-size:13px;margin-top:4px;opacity:0.75}
+  .metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:1.25rem}
+  .metric-card{background:#fff;border:1px solid #e0dfd8;border-radius:10px;padding:1rem;text-align:center}
+  .metric-label{font-size:11px;color:#888;font-weight:500;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em}
+  .metric-val{font-size:26px;font-weight:600;color:#1a1a1a}
+  .metric-sub{font-size:11px;color:#aaa;margin-top:2px}
+  .hazard-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f0ede8;font-size:13px;gap:8px}
+  .hazard-row:last-child{border-bottom:none}
+  .hazard-name{color:#333;flex:1}
+  .badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+  .b-low{background:#e8f5e1;color:#3a6b12}
+  .b-med{background:#fff3d6;color:#7a4d0a}
+  .b-high{background:#fde8e8;color:#9a2222}
+  .rec-item{padding:10px 0;border-bottom:1px solid #f0ede8;font-size:13px;line-height:1.55;color:#444}
+  .rec-item:last-child{border-bottom:none}
+  .rec-item strong{color:#1a1a1a;font-weight:600}
+  .progress-wrap{background:#eee;border-radius:20px;height:10px;margin:1rem 0 0.5rem;overflow:hidden}
+  .progress-bar{height:100%;border-radius:20px;transition:width 0.4s ease}
+  .bar-low{background:#5a9e2f}
+  .bar-med{background:#e09020}
+  .bar-high{background:#c83030}
+  .print-btn{float:right;background:none;border:1px solid #d0cfc8;border-radius:7px;padding:7px 14px;font-size:12px;color:#555;cursor:pointer;transition:background 0.1s}
+  .print-btn:hover{background:#f0ede8}
+  .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem}
+  .timestamp{font-size:11px;color:#aaa;margin-bottom:1.5rem}
+  @media(max-width:600px){
+    .grid2,.grid3,.metrics{grid-template-columns:1fr}
+    body{padding:1rem 0.75rem}
+  }
+  @media print{
+    body{background:#fff;padding:0}
+    .btn-back,.print-btn,.btn-calc{display:none}
+    .section{border:1px solid #ccc;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="logo">
+    <span class="logo-badge">FLYABILITY</span>
+    <span style="font-size:13px;color:#888">Elios 3 — Standard Operating Procedure</span>
+  </div>
+
+  <h1>Evaluador de Riesgo de Misión</h1>
+  <p class="subtitle">Ingresa los parámetros de la operación para calcular el nivel de riesgo inicial y residual según el SOP Elios 3.</p>
+
+  <!-- FORM -->
+  <div id="form-view">
+
+    <div class="section">
+      <div class="section-title">1. Piloto</div>
+      <div class="grid2">
+        <div class="field">
+          <label>Misiones ejecutadas con Elios 3</label>
+          <select id="exp">
+            <option value="0">Menos de 2 misiones</option>
+            <option value="1">Entre 2 y 5 misiones</option>
+            <option value="2">Más de 5 misiones</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Entrenamiento completado</label>
+          <select id="train">
+            <option value="0">Intro online</option>
+            <option value="1">Intro presencial</option>
+            <option value="2">Intro + AIIM</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">2. Preparación de la misión</div>
+      <div class="grid2">
+        <div class="field">
+          <label>Tipo de vuelo</label>
+          <select id="flight_type">
+            <option value="0">Indoor — espacios abiertos</option>
+            <option value="1">Indoor — espacios confinados</option>
+            <option value="2">Outdoor / espacios muy confinados</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Cumplimiento normativo (outdoor)</label>
+          <select id="compliance">
+            <option value="0">Totalmente conforme con permisos</option>
+            <option value="1">Restricciones menores / permisos pendientes</option>
+            <option value="2">Restricciones mayores / zona NFZ</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Posición del piloto</label>
+          <select id="pilot_pos">
+            <option value="0">Dentro del asset inspeccionado</option>
+            <option value="1">Fuera del asset inspeccionado</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Gestión de batería</label>
+          <select id="battery">
+            <option value="0">Reserva amplia + cargador disponible</option>
+            <option value="1">Reserva limitada + cargador disponible</option>
+            <option value="2">Reserva limitada, sin cargador</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Método de pilotaje</label>
+          <select id="pilot_method">
+            <option value="0">VLOS</option>
+            <option value="1">BVLOS entorno seguro</option>
+            <option value="2">BVLOS entorno inaccesible</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Información del asset</label>
+          <select id="asset_info">
+            <option value="0">Muchas fotos / planos disponibles</option>
+            <option value="1">Pocas fotos / planos</option>
+            <option value="2">Sin fotos ni planos</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">3. Ambiente y situación</div>
+      <div class="grid3">
+        <div class="field">
+          <label>Temperatura</label>
+          <select id="temp">
+            <option value="0">10°C a 40°C (óptimo)</option>
+            <option value="1">0°C a 10°C</option>
+            <option value="2">Bajo 0°C</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tamaño del área de vuelo</label>
+          <select id="area_size">
+            <option value="0">3 a 6 m</option>
+            <option value="1">1 a 3 m</option>
+            <option value="2">60 cm a 1 m</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Viento / flujo de aire</label>
+          <select id="wind">
+            <option value="0">Sin viento</option>
+            <option value="1">Viento leve (menor 2 m/s)</option>
+            <option value="2">Viento fuerte (2–7 m/s)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Distancia a volar (línea recta)</label>
+          <select id="dist">
+            <option value="0">0–50 m</option>
+            <option value="1">50–100 m</option>
+            <option value="2">100–150 m</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Visibilidad en el área</label>
+          <select id="vis">
+            <option value="0">Limpia</option>
+            <option value="1">Polvo moderado</option>
+            <option value="2">Mucho polvo / niebla / humo</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Apertura más estrecha</label>
+          <select id="narrow">
+            <option value="0">Muy grande (sin restricción)</option>
+            <option value="1">Manhole 80 cm – 1 m</option>
+            <option value="2">Manhole 50 – 80 cm</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Textura de paredes</label>
+          <select id="texture">
+            <option value="0">Texturadas / colores variados</option>
+            <option value="1">Pocas texturas / objetos</option>
+            <option value="2">Sin texturas / superficies uniformes</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Superficie a inspeccionar</label>
+          <select id="surface">
+            <option value="0">No reflectante</option>
+            <option value="1">Brillante</option>
+            <option value="2">Muy brillante / espejada</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Altitud del dron</label>
+          <select id="altitude">
+            <option value="0">0 a 20 m</option>
+            <option value="1">20 a 60 m</option>
+            <option value="2">60 a 200 m</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">4. Análisis de riesgo Elios</div>
+      <div class="grid2">
+        <div class="field">
+          <label>Riesgo de daños físicos al dron</label>
+          <select id="dmg">
+            <option value="0">Sin riesgo inminente en el área</option>
+            <option value="1">Pocos objetos que puedan enganchar la jaula</option>
+            <option value="2">Objetos que pueden caer / muchos riesgos</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Oscuridad del entorno</label>
+          <select id="dark">
+            <option value="0">Sin necesidad de iluminación adicional</option>
+            <option value="1">Parcialmente iluminado</option>
+            <option value="2">Muy oscuro / área amplia</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Calidad de señal esperada</label>
+          <select id="signal">
+            <option value="0">Sin riesgo de pérdida de conexión</option>
+            <option value="1">Posible riesgo (entorno metálico)</option>
+            <option value="2">Alto riesgo (entorno de concreto)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Recuperación del dron en incidente</label>
+          <select id="recover">
+            <option value="0">Sin problema para recuperar</option>
+            <option value="1">Requiere permiso de entrada</option>
+            <option value="2">Imposible recuperar</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Consecuencia si no se recupera</label>
+          <select id="consequence">
+            <option value="0">Sin riesgo para el asset</option>
+            <option value="1">Riesgo bajo para el asset</option>
+            <option value="2">Alto riesgo para el asset</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Sustancias peligrosas presentes</label>
+          <select id="hazmat">
+            <option value="0">Ninguna</option>
+            <option value="1">Presentes — riesgo moderado</option>
+            <option value="2">Explosivas / altamente inflamables</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Presencia de agua / líquido</label>
+          <select id="water">
+            <option value="0">Sin agua</option>
+            <option value="1">Agua menor a 2 cm (no puede aterrizar)</option>
+            <option value="2">Volar sobre agua / líquido</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tipo de inspección</label>
+          <select id="insp_type">
+            <option value="0">Inspección local</option>
+            <option value="1">Inspección sistemática parcial</option>
+            <option value="2">Inspección sistemática total de la instalación</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:0.5rem">
+      <button class="btn-calc" onclick="calcRisk()">Calcular riesgo de la misión →</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-view" id="result-view">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+      <button class="btn-back" onclick="goBack()">← Volver al formulario</button>
+      <button class="print-btn" onclick="window.print()">Imprimir / Guardar PDF</button>
+    </div>
+    <div class="timestamp" id="timestamp"></div>
+
+    <div id="risk-banner" class="risk-banner">
+      <div class="risk-label">Nivel de dificultad de misión</div>
+      <div class="risk-level" id="risk-level-text">—</div>
+      <div class="risk-sub" id="risk-sub-text">—</div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="metric-label">Riesgo inicial</div>
+        <div class="metric-val" id="initial-score">—</div>
+        <div class="metric-sub">sin mitigación</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Riesgo residual</div>
+        <div class="metric-val" id="residual-score">—</div>
+        <div class="metric-sub">aplicando SOP</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Reducción de riesgo</div>
+        <div class="metric-val" id="risk-reduction">—</div>
+        <div class="metric-sub">con mitigaciones</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Barra de riesgo inicial</div>
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:#aaa;margin-top:4px">
+        <span>Bajo (0–35)</span><span>Medio (36–65)</span><span>Alto (66–100)</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Detalle por factor de riesgo</div>
+      <div id="hazard-list"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Recomendaciones de mitigación (ordenadas por prioridad)</div>
+      <div id="rec-list"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function val(id){return parseInt(document.getElementById(id).value)}
+
+const FACTORS=[
+  {name:"Experiencia del piloto",id:"exp",w:3},
+  {name:"Entrenamiento",id:"train",w:2},
+  {name:"Tipo de vuelo",id:"flight_type",w:3},
+  {name:"Cumplimiento normativo",id:"compliance",w:2},
+  {name:"Posición del piloto",id:"pilot_pos",w:2},
+  {name:"Gestión de batería",id:"battery",w:3},
+  {name:"Método de pilotaje",id:"pilot_method",w:3},
+  {name:"Información del asset",id:"asset_info",w:2},
+  {name:"Temperatura",id:"temp",w:2},
+  {name:"Tamaño del área de vuelo",id:"area_size",w:3},
+  {name:"Viento / flujo de aire",id:"wind",w:3},
+  {name:"Distancia a volar",id:"dist",w:2},
+  {name:"Visibilidad",id:"vis",w:2},
+  {name:"Apertura más estrecha",id:"narrow",w:3},
+  {name:"Textura de paredes",id:"texture",w:2},
+  {name:"Superficie a inspeccionar",id:"surface",w:2},
+  {name:"Altitud del dron",id:"altitude",w:2},
+  {name:"Riesgo de daños físicos",id:"dmg",w:3},
+  {name:"Oscuridad del entorno",id:"dark",w:2},
+  {name:"Calidad de señal",id:"signal",w:3},
+  {name:"Recuperación en incidente",id:"recover",w:3},
+  {name:"Consecuencia sin recuperación",id:"consequence",w:3},
+  {name:"Sustancias peligrosas",id:"hazmat",w:4},
+  {name:"Presencia de agua / líquido",id:"water",w:3},
+  {name:"Tipo de inspección",id:"insp_type",w:2},
+];
+
+const RECS={
+  exp:{0:"El piloto debe completar el entrenamiento introductorio online antes de volar. No ejecutar misiones complejas.",1:"Completar entrenamiento introductorio presencial. Realizar vuelo de práctica previo a la misión.",2:"Piloto certificado — proceder con los protocolos estándar del SOP."},
+  train:{0:"Completar al menos el módulo online antes de la misión.",1:"Entrenamiento presencial completado — correcto.",2:"Entrenamiento AIIM completado — habilitado para misiones de alta complejidad."},
+  flight_type:{0:"Vuelo indoor en espacio abierto — bajo riesgo de colisión.",1:"Espacio confinado: verificar integridad de la cage y planificar ruta de salida de emergencia.",2:"Espacio muy confinado o outdoor: activar modo MANUAL. Solo pilotos con certificación AIIM."},
+  compliance:{0:"Permisos en regla — proceder con la misión.",1:"Obtener todos los permisos pendientes antes del día de la misión. No operar con aprobaciones incompletas.",2:"No operar hasta resolver restricciones. Zona NFZ requiere autorización específica de la autoridad aérea."},
+  pilot_pos:{0:"Piloto dentro del asset — mantener comunicación con el equipo exterior.",1:"Piloto fuera del asset — asegurar línea de visión o uso del cockpit."},
+  battery:{0:"Baterías en buen estado. Regla crítica: no superar 9 min de vuelo ni bajar de 20V.",1:"Reserva limitada: monitorear voltaje cada 2 min. Aterrizar con amplio margen de seguridad.",2:"Sin cargador en sitio: planificar número máximo de vuelos con baterías disponibles. No improvisar carga."},
+  pilot_method:{0:"VLOS: mantener distancia máxima de 75 m entre piloto y dron en todo momento.",1:"BVLOS en entorno seguro: activar función 'Return to signal'. Designar un spotter.",2:"BVLOS inaccesible: uso obligatorio del cockpit. Mínimo un spotter adicional en posición estratégica."},
+  asset_info:{0:"Información suficiente del asset para planificar rutas.",1:"Información limitada: realizar vuelo de reconocimiento antes de la inspección sistemática.",2:"Sin información previa: vuelo reco obligatorio en primer vuelo. No planificar inspección sin reconocimiento."},
+  temp:{0:"Temperatura dentro del rango operativo óptimo (10°C–40°C).",1:"Temperatura baja: calentar las baterías antes de usar. Monitorear rendimiento durante el vuelo.",2:"Temperatura bajo 0°C: fuera de especificación del fabricante. No operar salvo autorización expresa."},
+  area_size:{0:"Área de vuelo adecuada — usar modo ASSIST.",1:"Área pequeña: cambiar a modo ATTI. Mayor concentración y control manual requerido.",2:"Área muy reducida: modo MANUAL obligatorio. Requiere piloto con entrenamiento AIIM."},
+  wind:{0:"Sin viento — condiciones ideales de vuelo.",1:"Viento leve: verificar comportamiento del dron inmediatamente tras el despegue.",2:"Viento fuerte: usar anemómetro antes de volar. Solo operar bajo 7 m/s. Cancelar si supera umbral."},
+  dist:{0:"Distancia corta — bajo riesgo operacional.",1:"Distancia media: verificar calidad de señal regularmente durante el vuelo.",2:"Distancia larga: evaluar posicionamiento de antenas o relay de señal. Riesgo elevado de pérdida de control."},
+  vis:{0:"Visibilidad limpia — condiciones óptimas.",1:"Polvo moderado: limpiar lentes de cámara y LiDAR antes de cada vuelo.",2:"Visibilidad reducida: reducir velocidad al mínimo. Considerar posponer la misión si compromete la seguridad."},
+  narrow:{0:"Apertura amplia — sin restricciones de maniobra.",1:"Manhole entre 80 cm y 1 m: verificar que el dron pase con margen. Entrada y salida lenta.",2:"Apertura de 50–80 cm: solo pilotos expertos. Evaluar viabilidad real antes de comprometer la misión."},
+  texture:{0:"Paredes texturadas — el sistema de posicionamiento LiDAR funciona correctamente.",1:"Pocas texturas: el posicionamiento puede degradarse. Mayor atención al pilotaje manual.",2:"Sin texturas / paredes uniformes: alto riesgo de deriva. Usar modo MANUAL y volar muy despacio."},
+  surface:{0:"Superficie no reflectante — cámara e inspección sin interferencias.",1:"Superficie brillante: ajustar exposición de cámara. Puede afectar calidad de imágenes.",2:"Superficie muy brillante: puede saturar la cámara y dificultar el posicionamiento óptico. Planificar ángulos."},
+  altitude:{0:"Altitud baja — fácil monitoreo y recuperación.",1:"Altitud media: monitorear batería con mayor frecuencia.",2:"Altitud alta (hasta 200 m): riesgo significativo de pérdida. Verificar señal y batería constantemente."},
+  dmg:{0:"Sin objetos de riesgo en el área de vuelo.",1:"Pocos objetos: navegar con precaución. Reducir velocidad cerca de estructuras.",2:"Riesgo alto de enganche o caída de objetos sobre el dron: velocidad mínima. Evaluar si continuar la misión."},
+  dark:{0:"Iluminación suficiente — activar LES para posicionamiento en oscuridad.",1:"Zona parcialmente iluminada: activar luces del dron al máximo. Ajustar ISO de cámara.",2:"Oscuridad total en área amplia: preparar sistema de iluminación adicional externo al dron."},
+  signal:{0:"Señal estable — sin obstrucciones entre dron y antenas del controlador.",1:"Posible pérdida en entorno metálico: activar 'Return to signal'. Monitorear indicador de señal.",2:"Alto riesgo de pérdida de señal en concreto: posicionar antenas estratégicamente. Spotter obligatorio."},
+  recover:{0:"Recuperación sin dificultad en caso de incidente.",1:"Recuperación requiere permiso de entrada: coordinar con site manager antes de iniciar la misión.",2:"Recuperación imposible: evaluar consecuencias y decidir si operar. Documentar decisión."},
+  consequence:{0:"Sin riesgo para el asset si el dron queda en lugar.",1:"Riesgo bajo: documentar ubicación exacta en caso de incidente.",2:"Alto riesgo para el asset: definir plan de contingencia obligatorio antes de comenzar la misión."},
+  hazmat:{0:"Sin sustancias peligrosas — condiciones estándar.",1:"Sustancias presentes: consultar MSDS del sitio. Usar EPP adecuado. Informar al equipo.",2:"Explosivos / inflamables: cargar baterías lejos del área. Extintor obligatorio en sitio. Verificar ATEX."},
+  water:{0:"Sin agua en el área de vuelo.",1:"Agua menor a 2 cm: el dron no puede aterrizar. Planificar punto de aterrizaje alternativo.",2:"Vuelo sobre agua / líquido: riesgo de pérdida total del equipo. Solo ejecutar si es estrictamente necesario."},
+  insp_type:{0:"Inspección local — alcance acotado y manejable.",1:"Inspección sistemática parcial: planificar vuelos con objetivos claros y secuenciados.",2:"Inspección sistemática total: múltiples vuelos y baterías. Planificación detallada obligatoria."},
+};
+
+function calcRisk(){
+  let initialScore=0, maxScore=0;
+  const details=[];
+
+  FACTORS.forEach(f=>{
+    const v=val(f.id);
+    const raw=(v===0?1:v===1?3:4)*f.w;
+    maxScore+=4*f.w;
+    initialScore+=raw;
+    const lvl=v===0?"bajo":v===1?"medio":"alto";
+    details.push({name:f.name,level:lvl,score:raw,maxScore:4*f.w,rec:RECS[f.id][v]});
+  });
+
+  const pct=Math.round((initialScore/maxScore)*100);
+  let residualPct, riskLevel, riskSub, bannerStyle, barClass;
+
+  if(pct<=35){
+    riskLevel="BAJO";
+    riskSub="La misión puede ejecutarse con procedimientos estándar del SOP.";
+    residualPct=Math.round(pct*0.5);
+    bannerStyle="background:#e8f5e1;color:#2d5c0e;border:1px solid #c5e0a8";
+    barClass="bar-low";
+  }else if(pct<=65){
+    riskLevel="MEDIO";
+    riskSub="Se requieren mitigaciones específicas antes de ejecutar la misión.";
+    residualPct=Math.round(pct*0.55);
+    bannerStyle="background:#fff3d6;color:#6a3f08;border:1px solid #f5d48a";
+    barClass="bar-med";
+  }else{
+    riskLevel="ALTO";
+    riskSub="Misión de alta complejidad. Revisar todas las mitigaciones antes de proceder.";
+    residualPct=Math.round(pct*0.62);
+    bannerStyle="background:#fde8e8;color:#7a1a1a;border:1px solid #f0aaaa";
+    barClass="bar-high";
+  }
+
+  const reduction=pct-residualPct;
+
+  document.getElementById("risk-banner").style.cssText=bannerStyle+";border-radius:12px;padding:1.75rem;text-align:center;margin-bottom:1.25rem";
+  document.getElementById("risk-level-text").textContent=riskLevel;
+  document.getElementById("risk-sub-text").textContent=riskSub;
+  document.getElementById("initial-score").textContent=pct+"/100";
+  document.getElementById("residual-score").textContent=residualPct+"/100";
+  document.getElementById("risk-reduction").textContent="-"+reduction+" pts";
+
+  const bar=document.getElementById("progress-bar");
+  bar.className="progress-bar "+barClass;
+  bar.style.width=pct+"%";
+
+  document.getElementById("timestamp").textContent="Evaluación generada el "+new Date().toLocaleString("es-CL",{dateStyle:"long",timeStyle:"short"});
+
+  const hl=document.getElementById("hazard-list");
+  hl.innerHTML="";
+  details.forEach(d=>{
+    const bc=d.level==="bajo"?"b-low":d.level==="medio"?"b-med":"b-high";
+    hl.innerHTML+=`<div class="hazard-row"><span class="hazard-name">${d.name}</span><span class="badge ${bc}">${d.level}</span></div>`;
+  });
+
+  const rl=document.getElementById("rec-list");
+  rl.innerHTML="";
+  const order={alto:0,medio:1,bajo:2};
+  const sorted=[...details].sort((a,b)=>order[a.level]-order[b.level]);
+  sorted.forEach(d=>{
+    rl.innerHTML+=`<div class="rec-item"><strong>${d.name}:</strong> ${d.rec}</div>`;
+  });
+
+  document.getElementById("form-view").style.display="none";
+  document.getElementById("result-view").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function goBack(){
+  document.getElementById("form-view").style.display="block";
+  document.getElementById("result-view").style.display="none";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
