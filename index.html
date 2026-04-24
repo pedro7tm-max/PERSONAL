@@ -7,50 +7,63 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f4f0;color:#1a1a1a;min-height:100vh;padding:2rem 1rem}
-.container{max-width:900px;margin:0 auto}
-.logo{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+.container{max-width:960px;margin:0 auto}
+
+/* ── NAV ── */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;flex-wrap:wrap;gap:12px}
+.logo{display:flex;align-items:center;gap:10px}
 .logo-badge{background:#d83a1e;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;letter-spacing:0.05em}
 .logo-sub{font-size:13px;color:#888}
-h1{font-size:22px;font-weight:600;margin-bottom:4px}
-.subtitle{font-size:14px;color:#666;margin-bottom:2rem}
+.nav-tabs{display:flex;gap:4px;background:#fff;border:1px solid #e0dfd8;border-radius:10px;padding:4px}
+.nav-tab{padding:7px 18px;font-size:13px;font-weight:500;border:none;background:none;border-radius:7px;cursor:pointer;color:#888;transition:all 0.15s}
+.nav-tab.active{background:#1a1a1a;color:#fff}
+.nav-tab:hover:not(.active){background:#f0ede8;color:#1a1a1a}
 
+/* ── CONFIG BANNER ── */
+.config-banner{background:#fff3d6;border:1px solid #f5d48a;border-radius:10px;padding:12px 16px;margin-bottom:1.25rem;font-size:13px;color:#7a4d0a;display:flex;align-items:flex-start;gap:10px}
+.config-banner a{color:#d83a1e;font-weight:600;text-decoration:none}
+.config-banner a:hover{text-decoration:underline}
+
+/* ── SECTIONS ── */
 .section{background:#fff;border:1px solid #e0dfd8;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem}
 .section-title{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px}
-.section-title .stag{background:#f0ede8;color:#888;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600}
-.section-title .stag.red{background:#fde8e8;color:#9a2222}
+.stag{background:#f0ede8;color:#888;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600}
+.stag.red{background:#fde8e8;color:#9a2222}
 
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 .grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
 .field{display:flex;flex-direction:column;gap:5px}
-.field label{font-size:12px;color:#555;font-weight:500;display:flex;align-items:center;gap:4px}
+.field label{font-size:12px;color:#555;font-weight:500}
 .req{color:#d83a1e;font-size:11px}
 .field-note{font-size:11px;color:#bbb;margin-top:2px}
 
 input[type=text],input[type=date],input[type=email],input[type=number],select,textarea{
   width:100%;padding:8px 10px;font-size:13px;border:1px solid #d0cfc8;border-radius:7px;
-  background:#fafaf8;color:#1a1a1a;font-family:inherit;transition:border-color 0.15s
-}
+  background:#fafaf8;color:#1a1a1a;font-family:inherit;transition:border-color 0.15s}
 select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-color:#fafaf8;cursor:pointer;padding-right:28px}
 input:focus,select:focus,textarea:focus{outline:none;border-color:#d83a1e;box-shadow:0 0 0 3px rgba(216,58,30,0.10)}
 textarea{resize:vertical;min-height:68px;line-height:1.5}
-
 .divider{border:none;border-top:1px solid #eee;margin:1rem 0}
 .subsection-label{font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;margin-top:4px}
 
-.btn-calc{width:100%;padding:14px;font-size:15px;font-weight:600;background:#d83a1e;color:#fff;border:none;border-radius:10px;cursor:pointer;margin-top:0.75rem;letter-spacing:0.01em;transition:background 0.15s}
+.btn{padding:8px 16px;font-size:13px;font-weight:500;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:all 0.15s}
+.btn-primary{background:#d83a1e;color:#fff;border-color:#d83a1e}
+.btn-primary:hover{background:#b83018}
+.btn-primary:disabled{background:#ccc;border-color:#ccc;cursor:not-allowed}
+.btn-secondary{background:#fff;color:#555;border-color:#d0cfc8}
+.btn-secondary:hover{background:#f0ede8}
+.btn-dark{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.btn-dark:hover{background:#333}
+.btn-calc{width:100%;padding:14px;font-size:15px;font-weight:600;background:#d83a1e;color:#fff;border:none;border-radius:10px;cursor:pointer;margin-top:0.75rem;transition:background 0.15s}
 .btn-calc:hover{background:#b83018}
-.btn-back{background:none;border:1px solid #d0cfc8;border-radius:7px;padding:7px 14px;font-size:13px;color:#555;cursor:pointer;transition:background 0.1s}
-.btn-back:hover{background:#f0ede8}
-.print-btn{background:none;border:1px solid #d0cfc8;border-radius:7px;padding:7px 14px;font-size:12px;color:#555;cursor:pointer;transition:background 0.1s}
-.print-btn:hover{background:#f0ede8}
 
 .error-msg{font-size:12px;color:#c83030;background:#fde8e8;border:1px solid #f0aaaa;border-radius:7px;padding:10px 14px;margin-top:10px;display:none}
+.success-msg{font-size:13px;color:#2d5c0e;background:#e8f5e1;border:1px solid #c5e0a8;border-radius:7px;padding:12px 16px;margin-top:10px;display:none}
 
 /* ── RESULT ── */
 .result-view{display:none}
-
-.report-card{background:#fff;border:1px solid #e0dfd8;border-radius:12px;padding:0;margin-bottom:1rem;overflow:hidden}
+.report-card{background:#fff;border:1px solid #e0dfd8;border-radius:12px;overflow:hidden;margin-bottom:1rem}
 .report-card-header{background:#1a1a1a;color:#fff;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
 .report-card-header h2{font-size:17px;font-weight:600;margin-bottom:3px}
 .report-card-header p{font-size:13px;color:#aaa}
@@ -58,7 +71,6 @@ textarea{resize:vertical;min-height:68px;line-height:1.5}
 .report-num-label{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:0.06em}
 .report-num-val{font-size:16px;font-weight:700;color:#fff;margin-top:1px}
 .conf-pill{display:inline-block;background:#e09020;color:#fff;font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;margin-top:5px;letter-spacing:0.05em}
-
 .report-body{padding:1.25rem 1.5rem}
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .info-item{padding:9px 0;border-bottom:1px solid #f0ede8}
@@ -81,478 +93,253 @@ textarea{resize:vertical;min-height:68px;line-height:1.5}
 
 .progress-wrap{background:#eee;border-radius:20px;height:10px;margin:1rem 0 0.5rem;overflow:hidden}
 .progress-bar{height:100%;border-radius:20px;transition:width 0.5s ease}
-.bar-low{background:#5a9e2f}
-.bar-med{background:#e09020}
-.bar-high{background:#c83030}
+.bar-low{background:#5a9e2f}.bar-med{background:#e09020}.bar-high{background:#c83030}
 
 .hazard-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f0ede8;font-size:13px;gap:8px}
 .hazard-row:last-child{border-bottom:none}
 .hazard-name{color:#333;flex:1}
 .badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
-.b-low{background:#e8f5e1;color:#3a6b12}
-.b-med{background:#fff3d6;color:#7a4d0a}
-.b-high{background:#fde8e8;color:#9a2222}
-
+.b-low{background:#e8f5e1;color:#3a6b12}.b-med{background:#fff3d6;color:#7a4d0a}.b-high{background:#fde8e8;color:#9a2222}
 .rec-item{padding:10px 0;border-bottom:1px solid #f0ede8;font-size:13px;line-height:1.6;color:#444}
 .rec-item:last-child{border-bottom:none}
 .rec-item strong{color:#1a1a1a;font-weight:600}
 
-.result-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+/* ── DASHBOARD ── */
+.dash-view{display:none}
+.dash-empty{text-align:center;padding:3rem 1rem;color:#aaa;font-size:14px}
+.dash-stats{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:1.25rem}
+.stat-card{background:#fff;border:1px solid #e0dfd8;border-radius:10px;padding:1rem;text-align:center}
+.stat-num{font-size:30px;font-weight:700;color:#1a1a1a}
+.stat-label{font-size:11px;color:#aaa;margin-top:3px;text-transform:uppercase;letter-spacing:0.05em}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem}
+.chart-card{background:#fff;border:1px solid #e0dfd8;border-radius:12px;padding:1.25rem}
+.chart-title{font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem}
+.bar-chart{display:flex;flex-direction:column;gap:8px}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:12px}
+.bar-row-label{width:130px;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+.bar-row-track{flex:1;background:#f0ede8;border-radius:20px;height:18px;overflow:hidden;position:relative}
+.bar-row-fill{height:100%;border-radius:20px;transition:width 0.4s ease;display:flex;align-items:center;padding-left:8px}
+.bar-row-fill span{font-size:11px;font-weight:600;color:#fff;white-space:nowrap}
+.bar-row-count{width:30px;text-align:right;color:#888;font-weight:600;flex-shrink:0}
+.donut-wrap{display:flex;align-items:center;gap:1.5rem;justify-content:center}
+.donut-legend{display:flex;flex-direction:column;gap:8px}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:#555}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.timeline-chart{display:flex;flex-direction:column;gap:6px}
+.tl-row{display:flex;align-items:center;gap:10px;font-size:12px}
+.tl-date{width:80px;color:#888;flex-shrink:0;font-size:11px}
+.tl-bar{height:20px;border-radius:4px;min-width:4px;display:flex;align-items:center;padding:0 8px;color:#fff;font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden}
+
+/* ── REPO TABLE ── */
+.repo-view{display:none}
+.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid #e0dfd8}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:13px}
+thead tr{background:#f8f7f4;border-bottom:1px solid #e0dfd8}
+th{padding:10px 14px;text-align:left;font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid #f0ede8;color:#333;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf8}
+.tbl-badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600}
+
+/* ── CONFIG TAB ── */
+.cfg-view{display:none}
+.cfg-steps{counter-reset:step}
+.cfg-step{display:flex;gap:14px;margin-bottom:1.25rem;align-items:flex-start}
+.cfg-step-num{width:28px;height:28px;background:#d83a1e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px}
+.cfg-step-body h4{font-size:14px;font-weight:600;margin-bottom:4px}
+.cfg-step-body p{font-size:13px;color:#666;line-height:1.55}
+.cfg-step-body code{background:#f0ede8;padding:2px 6px;border-radius:4px;font-size:12px;font-family:monospace;color:#d83a1e}
+.cfg-step-body a{color:#d83a1e;font-weight:600;text-decoration:none}
+.cfg-step-body a:hover{text-decoration:underline}
+.cfg-url-field{display:flex;gap:8px;margin-top:8px}
+.cfg-url-field input{flex:1}
+
+/* ── MISC ── */
+.result-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px}
+.page-header{margin-bottom:1.5rem}
+.page-header h1{font-size:22px;font-weight:600;margin-bottom:4px}
+.page-header p{font-size:14px;color:#666}
 
 @media(max-width:640px){
-  .grid2,.grid3,.grid4,.metrics,.info-grid{grid-template-columns:1fr}
+  .grid2,.grid3,.grid4,.metrics,.info-grid,.charts-grid,.dash-stats{grid-template-columns:1fr}
   .info-item:nth-last-child(-n+2){border-bottom:1px solid #f0ede8}
   .info-item:last-child{border-bottom:none}
   body{padding:1rem 0.75rem}
-  .report-card-header{flex-direction:column;gap:0.75rem}
+  .topbar{flex-direction:column;align-items:flex-start}
+  .bar-row-label{width:90px}
 }
 @media print{
   body{background:#fff;padding:0}
-  .btn-back,.print-btn,.btn-calc,.result-top button{display:none!important}
+  .topbar,.nav-tabs,.result-top button,.btn-calc{display:none!important}
   .section,.report-card{border:1px solid #ccc;break-inside:avoid}
-  .result-top{margin-bottom:0.75rem}
 }
 </style>
 </head>
 <body>
 <div class="container">
 
-<div class="logo">
-  <span class="logo-badge">FLYABILITY</span>
-  <span class="logo-sub">Elios 3 — Standard Operating Procedure</span>
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">
+    <span class="logo-badge">FLYABILITY</span>
+    <span class="logo-sub">Elios 3 — Evaluador de Riesgo</span>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('form')">📋 Nueva evaluación</button>
+    <button class="nav-tab" onclick="showTab('repo')">🗂 Repositorio</button>
+    <button class="nav-tab" onclick="showTab('dash')">📊 Dashboard</button>
+    <button class="nav-tab" onclick="showTab('cfg')">⚙️ Configuración</button>
+  </div>
 </div>
-<h1>Evaluador de Riesgo de Misión</h1>
-<p class="subtitle">Completa los datos del activo y los parámetros operacionales para generar la evaluación de riesgo según el SOP Elios 3.</p>
 
-<!-- ════════════════════════════════════════════
-     FORMULARIO
-════════════════════════════════════════════ -->
-<div id="form-view">
+<!-- CONFIG BANNER -->
+<div class="config-banner" id="cfg-banner">
+  ⚠️ <span>Google Sheets no está configurado. Los reportes no se guardarán hasta que ingreses tu URL de integración. <a href="#" onclick="showTab('cfg');return false">Ir a Configuración →</a></span>
+</div>
 
-  <!-- 0. IDENTIFICACIÓN DEL ACTIVO Y LA MISIÓN -->
-  <div class="section">
-    <div class="section-title">
-      Identificación del activo y la misión
-      <span class="stag red">Sección obligatoria</span>
-    </div>
+<!-- ══════════════════════════════════════════
+     TAB: FORMULARIO
+══════════════════════════════════════════ -->
+<div id="tab-form">
+<div class="page-header">
+  <h1>Nueva Evaluación de Riesgo</h1>
+  <p>Completa los datos del activo y los parámetros operacionales para generar el reporte.</p>
+</div>
 
-    <!-- Empresa -->
-    <div class="subsection-label">Empresa cliente</div>
-    <div class="grid3" style="margin-bottom:14px">
-      <div class="field">
-        <label>Nombre de la empresa <span class="req">*</span></label>
-        <input type="text" id="company" placeholder="Ej: Codelco, ENAP, Arauco…">
-      </div>
-      <div class="field">
-        <label>RUT / ID empresa</label>
-        <input type="text" id="company_id" placeholder="Ej: 76.123.456-7">
-      </div>
-      <div class="field">
-        <label>Industria / sector</label>
-        <select id="industry">
-          <option value="">— Seleccionar —</option>
-          <option>Minería</option>
-          <option>Oil &amp; Gas</option>
-          <option>Energía / utilities</option>
-          <option>Petroquímica / química</option>
-          <option>Celulosa / papel</option>
-          <option>Marítimo / naval</option>
-          <option>Construcción / infraestructura</option>
-          <option>Agua y saneamiento</option>
-          <option>Alimentaria / agroindustria</option>
-          <option>Telecomunicaciones</option>
-          <option>Otra</option>
-        </select>
-      </div>
-    </div>
+<!-- 0. IDENTIFICACIÓN -->
+<div class="section">
+  <div class="section-title">Identificación del activo y la misión <span class="stag red">Campos obligatorios *</span></div>
 
-    <hr class="divider">
-
-    <!-- Activo -->
-    <div class="subsection-label">Activo a inspeccionar</div>
-    <div class="grid2" style="margin-bottom:14px">
-      <div class="field">
-        <label>Nombre del activo <span class="req">*</span></label>
-        <input type="text" id="asset_name" placeholder="Ej: Estanque TK-204, Chimenea Norte…">
-      </div>
-      <div class="field">
-        <label>Tag / código del activo</label>
-        <input type="text" id="asset_tag" placeholder="Ej: TK-204-A, CH-N-01, E-301…">
-      </div>
-    </div>
-    <div class="grid3" style="margin-bottom:14px">
-      <div class="field">
-        <label>Tipo de activo</label>
-        <select id="asset_type">
-          <option value="">— Seleccionar —</option>
-          <option>Estanque / tanque</option>
-          <option>Chimenea / ducto de humos</option>
-          <option>Caldera</option>
-          <option>Tubería / ducto de proceso</option>
-          <option>Silo / tolva</option>
-          <option>Intercambiador de calor</option>
-          <option>Torre de enfriamiento</option>
-          <option>Reactor / vessel</option>
-          <option>Estructura civil / puente</option>
-          <option>Túnel / galería</option>
-          <option>Cámara / recinto subterráneo</option>
-          <option>Nave industrial / bodega</option>
-          <option>Otro</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Ubicación / planta / faena</label>
-        <input type="text" id="location" placeholder="Ej: Planta Rancagua, División Chuqui…">
-      </div>
-      <div class="field">
-        <label>Material del activo</label>
-        <input type="text" id="asset_material" placeholder="Ej: Acero inox 304L, concreto…">
-      </div>
-    </div>
-    <div class="grid2" style="margin-bottom:14px">
-      <div class="field">
-        <label>Descripción y condición actual del activo</label>
-        <textarea id="asset_desc" placeholder="Dimensiones aproximadas, estado actual, última inspección conocida, observaciones relevantes…"></textarea>
-      </div>
-      <div class="field">
-        <label>Objetivo de la inspección</label>
-        <textarea id="insp_goal" placeholder="Ej: Detección de corrosión en paredes inferiores, medición de espesores con UT, relevamiento LiDAR 3D…"></textarea>
-      </div>
-    </div>
-    <div class="grid2" style="margin-bottom:0">
-      <div class="field">
-        <label>Entregables esperados</label>
-        <input type="text" id="deliverables" placeholder="Ej: Imágenes JPEG, nube de puntos .las, informe PDF…">
-      </div>
-      <div class="field">
-        <label>¿Inspección confidencial?</label>
-        <select id="confidential">
-          <option value="No">No</option>
-          <option value="Sí">Sí — los datos son confidenciales</option>
-        </select>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <!-- Misión -->
-    <div class="subsection-label">Datos de la misión</div>
-    <div class="grid4" style="margin-bottom:0">
-      <div class="field">
-        <label>Fecha de inspección <span class="req">*</span></label>
-        <input type="date" id="insp_date">
-      </div>
-      <div class="field">
-        <label>N° vuelos planificados</label>
-        <input type="number" id="num_flights" placeholder="Ej: 4" min="1">
-      </div>
-      <div class="field">
-        <label>N° de evaluación / reporte</label>
-        <input type="text" id="report_num" placeholder="Ej: ERA-2025-001">
-        <span class="field-note">Se genera automáticamente si se deja vacío</span>
-      </div>
-      <div class="field">
-        <label>Tipo de inspección principal</label>
-        <select id="insp_mode">
-          <option value="">— Seleccionar —</option>
-          <option>Visual (cámara RGB)</option>
-          <option>Medición de espesores (UT)</option>
-          <option>Mapeo 3D LiDAR</option>
-          <option>Termografía</option>
-          <option>Combinada</option>
-        </select>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <!-- Personal -->
-    <div class="subsection-label">Personal involucrado</div>
-    <div class="grid3" style="margin-bottom:14px">
-      <div class="field">
-        <label>Piloto / operador del dron <span class="req">*</span></label>
-        <input type="text" id="pilot_name" placeholder="Nombre completo">
-      </div>
-      <div class="field">
-        <label>Empresa operadora</label>
-        <input type="text" id="operator_company" placeholder="Empresa que ejecuta la inspección">
-      </div>
-      <div class="field">
-        <label>Correo del piloto</label>
-        <input type="email" id="pilot_email" placeholder="piloto@empresa.com">
-      </div>
-    </div>
-    <div class="grid3">
-      <div class="field">
-        <label>Inspector / supervisor en sitio</label>
-        <input type="text" id="inspector_name" placeholder="Nombre completo">
-      </div>
-      <div class="field">
-        <label>Contacto cliente en sitio</label>
-        <input type="text" id="site_contact" placeholder="Nombre y cargo">
-      </div>
-      <div class="field">
-        <label>Teléfono contacto en sitio</label>
-        <input type="text" id="site_phone" placeholder="+56 9 XXXX XXXX">
-      </div>
-    </div>
-  </div>
-  <!-- FIN SECCIÓN 0 -->
-
-  <div id="req-error" class="error-msg">
-    ⚠ Por favor completa los campos obligatorios marcados con * antes de continuar:<br>
-    Empresa cliente · Nombre del activo · Fecha de inspección · Piloto / operador.
-  </div>
-
-  <!-- 1. PILOTO -->
-  <div class="section">
-    <div class="section-title">1. Experiencia del piloto <span class="stag">Operacional</span></div>
-    <div class="grid2">
-      <div class="field">
-        <label>Misiones ejecutadas con Elios 3</label>
-        <select id="exp">
-          <option value="0">Menos de 2 misiones</option>
-          <option value="1">Entre 2 y 5 misiones</option>
-          <option value="2">Más de 5 misiones</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Entrenamiento completado</label>
-        <select id="train">
-          <option value="0">Intro online</option>
-          <option value="1">Intro presencial</option>
-          <option value="2">Intro + AIIM</option>
-        </select>
-      </div>
+  <div class="subsection-label">Empresa cliente</div>
+  <div class="grid3" style="margin-bottom:14px">
+    <div class="field"><label>Nombre de la empresa <span class="req">*</span></label><input type="text" id="company" placeholder="Ej: Codelco, ENAP, Arauco…"></div>
+    <div class="field"><label>RUT / ID empresa</label><input type="text" id="company_id" placeholder="Ej: 76.123.456-7"></div>
+    <div class="field"><label>Industria / sector</label>
+      <select id="industry"><option value="">— Seleccionar —</option><option>Minería</option><option>Oil &amp; Gas</option><option>Energía / utilities</option><option>Petroquímica / química</option><option>Celulosa / papel</option><option>Marítimo / naval</option><option>Construcción / infraestructura</option><option>Agua y saneamiento</option><option>Alimentaria / agroindustria</option><option>Telecomunicaciones</option><option>Otra</option></select>
     </div>
   </div>
 
-  <!-- 2. PREPARACIÓN DE MISIÓN -->
-  <div class="section">
-    <div class="section-title">2. Preparación de la misión <span class="stag">Operacional</span></div>
-    <div class="grid2">
-      <div class="field">
-        <label>Tipo de vuelo</label>
-        <select id="flight_type">
-          <option value="0">Indoor — espacios abiertos</option>
-          <option value="1">Indoor — espacios confinados</option>
-          <option value="2">Outdoor / espacios muy confinados</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Cumplimiento normativo (outdoor)</label>
-        <select id="compliance">
-          <option value="0">Totalmente conforme con permisos</option>
-          <option value="1">Restricciones menores / permisos pendientes</option>
-          <option value="2">Restricciones mayores / zona NFZ</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Posición del piloto durante el vuelo</label>
-        <select id="pilot_pos">
-          <option value="0">Dentro del asset inspeccionado</option>
-          <option value="1">Fuera del asset inspeccionado</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Gestión de batería</label>
-        <select id="battery">
-          <option value="0">Reserva amplia + cargador disponible en sitio</option>
-          <option value="1">Reserva limitada + cargador disponible</option>
-          <option value="2">Reserva limitada, sin cargador en sitio</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Método de pilotaje</label>
-        <select id="pilot_method">
-          <option value="0">VLOS (visual line of sight)</option>
-          <option value="1">BVLOS en entorno seguro</option>
-          <option value="2">BVLOS en entorno inaccesible</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Información del asset disponible</label>
-        <select id="asset_info">
-          <option value="0">Muchas fotos / planos / sketches disponibles</option>
-          <option value="1">Pocas fotos / planos</option>
-          <option value="2">Sin fotos ni planos disponibles</option>
-        </select>
-      </div>
+  <hr class="divider">
+  <div class="subsection-label">Activo a inspeccionar</div>
+  <div class="grid2" style="margin-bottom:14px">
+    <div class="field"><label>Nombre del activo <span class="req">*</span></label><input type="text" id="asset_name" placeholder="Ej: Estanque TK-204, Chimenea Norte…"></div>
+    <div class="field"><label>Tag / código del activo</label><input type="text" id="asset_tag" placeholder="Ej: TK-204-A, CH-N-01…"></div>
+  </div>
+  <div class="grid3" style="margin-bottom:14px">
+    <div class="field"><label>Tipo de activo</label>
+      <select id="asset_type"><option value="">— Seleccionar —</option><option>Estanque / tanque</option><option>Chimenea / ducto de humos</option><option>Caldera</option><option>Tubería / ducto de proceso</option><option>Silo / tolva</option><option>Intercambiador de calor</option><option>Torre de enfriamiento</option><option>Reactor / vessel</option><option>Estructura civil / puente</option><option>Túnel / galería</option><option>Cámara / recinto subterráneo</option><option>Nave industrial / bodega</option><option>Otro</option></select>
+    </div>
+    <div class="field"><label>Ubicación / planta</label><input type="text" id="location" placeholder="Ej: Planta Rancagua, División Chuqui…"></div>
+    <div class="field"><label>Material del activo</label><input type="text" id="asset_material" placeholder="Ej: Acero inox 304L, concreto…"></div>
+  </div>
+  <div class="grid2" style="margin-bottom:14px">
+    <div class="field"><label>Descripción y condición actual</label><textarea id="asset_desc" placeholder="Dimensiones, estado actual, última inspección conocida…"></textarea></div>
+    <div class="field"><label>Objetivo de la inspección</label><textarea id="insp_goal" placeholder="Ej: Detección de corrosión, medición UT, LiDAR 3D…"></textarea></div>
+  </div>
+  <div class="grid2">
+    <div class="field"><label>Entregables esperados</label><input type="text" id="deliverables" placeholder="Ej: JPEG, nube de puntos .las, informe PDF…"></div>
+    <div class="field"><label>¿Inspección confidencial?</label><select id="confidential"><option value="No">No</option><option value="Sí">Sí — datos confidenciales</option></select></div>
+  </div>
+
+  <hr class="divider">
+  <div class="subsection-label">Datos de la misión</div>
+  <div class="grid4" style="margin-bottom:14px">
+    <div class="field"><label>Fecha de inspección <span class="req">*</span></label><input type="date" id="insp_date"></div>
+    <div class="field"><label>N° vuelos planificados</label><input type="number" id="num_flights" placeholder="Ej: 4" min="1"></div>
+    <div class="field"><label>N° de reporte</label><input type="text" id="report_num" placeholder="Auto si se deja vacío"><span class="field-note">Se genera automáticamente</span></div>
+    <div class="field"><label>Tipo de inspección</label>
+      <select id="insp_mode"><option value="">— Seleccionar —</option><option>Visual (cámara RGB)</option><option>Medición de espesores (UT)</option><option>Mapeo 3D LiDAR</option><option>Termografía</option><option>Combinada</option></select>
     </div>
   </div>
 
-  <!-- 3. AMBIENTE -->
-  <div class="section">
-    <div class="section-title">3. Ambiente y situación <span class="stag">Entorno</span></div>
-    <div class="grid3">
-      <div class="field">
-        <label>Temperatura en sitio</label>
-        <select id="temp">
-          <option value="0">10°C a 40°C (óptimo)</option>
-          <option value="1">0°C a 10°C</option>
-          <option value="2">Bajo 0°C</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Tamaño del área de vuelo</label>
-        <select id="area_size">
-          <option value="0">3 a 6 m (amplio)</option>
-          <option value="1">1 a 3 m</option>
-          <option value="2">60 cm a 1 m (muy reducido)</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Viento / flujo de aire</label>
-        <select id="wind">
-          <option value="0">Sin viento</option>
-          <option value="1">Viento leve (menor 2 m/s)</option>
-          <option value="2">Viento fuerte (2–7 m/s)</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Distancia a volar (línea recta)</label>
-        <select id="dist">
-          <option value="0">0–50 m</option>
-          <option value="1">50–100 m</option>
-          <option value="2">100–150 m</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Visibilidad en el área</label>
-        <select id="vis">
-          <option value="0">Limpia</option>
-          <option value="1">Polvo moderado</option>
-          <option value="2">Mucho polvo / niebla / humo</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Apertura más estrecha (manhole)</label>
-        <select id="narrow">
-          <option value="0">Muy grande (sin restricción)</option>
-          <option value="1">80 cm – 1 m</option>
-          <option value="2">50 – 80 cm</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Textura de paredes del activo</label>
-        <select id="texture">
-          <option value="0">Texturadas / colores variados</option>
-          <option value="1">Pocas texturas / objetos</option>
-          <option value="2">Sin texturas / superficies uniformes</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Superficie a inspeccionar</label>
-        <select id="surface">
-          <option value="0">No reflectante</option>
-          <option value="1">Brillante</option>
-          <option value="2">Muy brillante / espejada</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Altitud máxima del dron</label>
-        <select id="altitude">
-          <option value="0">0 a 20 m</option>
-          <option value="1">20 a 60 m</option>
-          <option value="2">60 a 200 m</option>
-        </select>
-      </div>
-    </div>
+  <hr class="divider">
+  <div class="subsection-label">Personal involucrado</div>
+  <div class="grid3" style="margin-bottom:14px">
+    <div class="field"><label>Piloto / operador <span class="req">*</span></label><input type="text" id="pilot_name" placeholder="Nombre completo"></div>
+    <div class="field"><label>Empresa operadora</label><input type="text" id="operator_company" placeholder="Empresa que ejecuta"></div>
+    <div class="field"><label>Correo del piloto</label><input type="email" id="pilot_email" placeholder="piloto@empresa.com"></div>
   </div>
-
-  <!-- 4. ANÁLISIS DE RIESGO ELIOS -->
-  <div class="section">
-    <div class="section-title">4. Análisis de riesgo Elios <span class="stag">Seguridad</span></div>
-    <div class="grid2">
-      <div class="field">
-        <label>Riesgo de daños físicos al dron</label>
-        <select id="dmg">
-          <option value="0">Sin riesgo inminente en el área</option>
-          <option value="1">Pocos objetos que puedan enganchar la jaula</option>
-          <option value="2">Objetos que pueden caer / muchos riesgos</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Oscuridad del entorno</label>
-        <select id="dark">
-          <option value="0">Sin necesidad de iluminación adicional</option>
-          <option value="1">Parcialmente iluminado</option>
-          <option value="2">Muy oscuro / área amplia</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Calidad de señal esperada</label>
-        <select id="signal">
-          <option value="0">Sin riesgo de pérdida de conexión</option>
-          <option value="1">Posible riesgo (entorno metálico)</option>
-          <option value="2">Alto riesgo (entorno de concreto)</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Recuperación del dron en incidente</label>
-        <select id="recover">
-          <option value="0">Sin problema para recuperar</option>
-          <option value="1">Requiere permiso de entrada</option>
-          <option value="2">Imposible recuperar</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Consecuencia si el dron no se recupera</label>
-        <select id="consequence">
-          <option value="0">Sin riesgo para el asset</option>
-          <option value="1">Riesgo bajo para el asset</option>
-          <option value="2">Alto riesgo para el asset</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Sustancias peligrosas presentes</label>
-        <select id="hazmat">
-          <option value="0">Ninguna</option>
-          <option value="1">Presentes — riesgo moderado</option>
-          <option value="2">Explosivas / altamente inflamables</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Presencia de agua / líquido en el área</label>
-        <select id="water">
-          <option value="0">Sin agua</option>
-          <option value="1">Agua menor a 2 cm (no puede aterrizar)</option>
-          <option value="2">Volar sobre agua / líquido</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Alcance de la inspección</label>
-        <select id="insp_type">
-          <option value="0">Inspección local (área acotada)</option>
-          <option value="1">Inspección sistemática parcial</option>
-          <option value="2">Inspección sistemática total de la instalación</option>
-        </select>
-      </div>
-    </div>
+  <div class="grid3">
+    <div class="field"><label>Inspector / supervisor</label><input type="text" id="inspector_name" placeholder="Nombre completo"></div>
+    <div class="field"><label>Contacto cliente en sitio</label><input type="text" id="site_contact" placeholder="Nombre y cargo"></div>
+    <div class="field"><label>Teléfono contacto en sitio</label><input type="text" id="site_phone" placeholder="+56 9 XXXX XXXX"></div>
   </div>
+</div>
 
-  <button class="btn-calc" onclick="calcRisk()">Generar evaluación de riesgo →</button>
+<div id="req-error" class="error-msg">⚠ Completa los campos obligatorios: Empresa cliente · Nombre del activo · Fecha de inspección · Piloto / operador.</div>
 
-</div><!-- fin form-view -->
+<!-- 1. PILOTO -->
+<div class="section">
+  <div class="section-title">1. Experiencia del piloto <span class="stag">Operacional</span></div>
+  <div class="grid2">
+    <div class="field"><label>Misiones ejecutadas con Elios 3</label>
+      <select id="exp"><option value="0">Menos de 2 misiones</option><option value="1">Entre 2 y 5 misiones</option><option value="2">Más de 5 misiones</option></select></div>
+    <div class="field"><label>Entrenamiento completado</label>
+      <select id="train"><option value="0">Intro online</option><option value="1">Intro presencial</option><option value="2">Intro + AIIM</option></select></div>
+  </div>
+</div>
 
+<!-- 2. MISIÓN -->
+<div class="section">
+  <div class="section-title">2. Preparación de la misión <span class="stag">Operacional</span></div>
+  <div class="grid2">
+    <div class="field"><label>Tipo de vuelo</label><select id="flight_type"><option value="0">Indoor — espacios abiertos</option><option value="1">Indoor — espacios confinados</option><option value="2">Outdoor / espacios muy confinados</option></select></div>
+    <div class="field"><label>Cumplimiento normativo</label><select id="compliance"><option value="0">Totalmente conforme con permisos</option><option value="1">Restricciones menores / permisos pendientes</option><option value="2">Restricciones mayores / zona NFZ</option></select></div>
+    <div class="field"><label>Posición del piloto durante el vuelo</label><select id="pilot_pos"><option value="0">Dentro del asset inspeccionado</option><option value="1">Fuera del asset inspeccionado</option></select></div>
+    <div class="field"><label>Gestión de batería</label><select id="battery"><option value="0">Reserva amplia + cargador disponible</option><option value="1">Reserva limitada + cargador disponible</option><option value="2">Reserva limitada, sin cargador en sitio</option></select></div>
+    <div class="field"><label>Método de pilotaje</label><select id="pilot_method"><option value="0">VLOS</option><option value="1">BVLOS entorno seguro</option><option value="2">BVLOS entorno inaccesible</option></select></div>
+    <div class="field"><label>Información del asset disponible</label><select id="asset_info"><option value="0">Muchas fotos / planos disponibles</option><option value="1">Pocas fotos / planos</option><option value="2">Sin fotos ni planos</option></select></div>
+  </div>
+</div>
 
-<!-- ════════════════════════════════════════════
-     RESULTADO
-════════════════════════════════════════════ -->
+<!-- 3. AMBIENTE -->
+<div class="section">
+  <div class="section-title">3. Ambiente y situación <span class="stag">Entorno</span></div>
+  <div class="grid3">
+    <div class="field"><label>Temperatura en sitio</label><select id="temp"><option value="0">10°C a 40°C (óptimo)</option><option value="1">0°C a 10°C</option><option value="2">Bajo 0°C</option></select></div>
+    <div class="field"><label>Tamaño del área de vuelo</label><select id="area_size"><option value="0">3 a 6 m</option><option value="1">1 a 3 m</option><option value="2">60 cm a 1 m</option></select></div>
+    <div class="field"><label>Viento / flujo de aire</label><select id="wind"><option value="0">Sin viento</option><option value="1">Viento leve (menor 2 m/s)</option><option value="2">Viento fuerte (2–7 m/s)</option></select></div>
+    <div class="field"><label>Distancia a volar (línea recta)</label><select id="dist"><option value="0">0–50 m</option><option value="1">50–100 m</option><option value="2">100–150 m</option></select></div>
+    <div class="field"><label>Visibilidad en el área</label><select id="vis"><option value="0">Limpia</option><option value="1">Polvo moderado</option><option value="2">Mucho polvo / niebla / humo</option></select></div>
+    <div class="field"><label>Apertura más estrecha (manhole)</label><select id="narrow"><option value="0">Muy grande</option><option value="1">80 cm – 1 m</option><option value="2">50 – 80 cm</option></select></div>
+    <div class="field"><label>Textura de paredes</label><select id="texture"><option value="0">Texturadas / colores variados</option><option value="1">Pocas texturas</option><option value="2">Sin texturas / uniformes</option></select></div>
+    <div class="field"><label>Superficie a inspeccionar</label><select id="surface"><option value="0">No reflectante</option><option value="1">Brillante</option><option value="2">Muy brillante / espejada</option></select></div>
+    <div class="field"><label>Altitud máxima del dron</label><select id="altitude"><option value="0">0 a 20 m</option><option value="1">20 a 60 m</option><option value="2">60 a 200 m</option></select></div>
+  </div>
+</div>
+
+<!-- 4. RIESGO -->
+<div class="section">
+  <div class="section-title">4. Análisis de riesgo Elios <span class="stag">Seguridad</span></div>
+  <div class="grid2">
+    <div class="field"><label>Riesgo de daños físicos al dron</label><select id="dmg"><option value="0">Sin riesgo inminente</option><option value="1">Pocos objetos que puedan enganchar la jaula</option><option value="2">Objetos que pueden caer / muchos riesgos</option></select></div>
+    <div class="field"><label>Oscuridad del entorno</label><select id="dark"><option value="0">Sin necesidad de iluminación adicional</option><option value="1">Parcialmente iluminado</option><option value="2">Muy oscuro / área amplia</option></select></div>
+    <div class="field"><label>Calidad de señal esperada</label><select id="signal"><option value="0">Sin riesgo de pérdida de conexión</option><option value="1">Posible riesgo (entorno metálico)</option><option value="2">Alto riesgo (entorno de concreto)</option></select></div>
+    <div class="field"><label>Recuperación del dron en incidente</label><select id="recover"><option value="0">Sin problema para recuperar</option><option value="1">Requiere permiso de entrada</option><option value="2">Imposible recuperar</option></select></div>
+    <div class="field"><label>Consecuencia si no se recupera</label><select id="consequence"><option value="0">Sin riesgo para el asset</option><option value="1">Riesgo bajo para el asset</option><option value="2">Alto riesgo para el asset</option></select></div>
+    <div class="field"><label>Sustancias peligrosas presentes</label><select id="hazmat"><option value="0">Ninguna</option><option value="1">Presentes — riesgo moderado</option><option value="2">Explosivas / altamente inflamables</option></select></div>
+    <div class="field"><label>Presencia de agua / líquido</label><select id="water"><option value="0">Sin agua</option><option value="1">Agua menor a 2 cm</option><option value="2">Volar sobre agua / líquido</option></select></div>
+    <div class="field"><label>Alcance de la inspección</label><select id="insp_type"><option value="0">Inspección local</option><option value="1">Inspección sistemática parcial</option><option value="2">Inspección sistemática total</option></select></div>
+  </div>
+</div>
+
+<button class="btn-calc" onclick="calcRisk()">Generar evaluación de riesgo →</button>
+
+<!-- RESULT -->
 <div class="result-view" id="result-view">
-
-  <div class="result-top">
-    <button class="btn-back" onclick="goBack()">← Volver al formulario</button>
-    <button class="print-btn" onclick="window.print()">Imprimir / Guardar PDF</button>
+  <div class="result-top" style="margin-top:1.5rem">
+    <button class="btn btn-secondary" onclick="resetForm()">← Nueva evaluación</button>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="window.print()">Imprimir / PDF</button>
+      <button class="btn btn-dark" id="btn-save" onclick="saveReport()">💾 Guardar en Google Sheets</button>
+    </div>
   </div>
+  <div id="save-success" class="success-msg">✅ Reporte guardado correctamente en Google Sheets.</div>
+  <div id="save-error" class="error-msg"></div>
 
-  <!-- Encabezado del reporte -->
   <div class="report-card">
     <div class="report-card-header">
-      <div>
-        <h2>Evaluación de Riesgo — Elios 3</h2>
-        <p id="rpt-subtitle">—</p>
-      </div>
+      <div><h2>Evaluación de Riesgo — Elios 3</h2><p id="rpt-subtitle">—</p></div>
       <div class="report-badge-wrap">
         <div class="report-num-label">N° de reporte</div>
         <div class="report-num-val" id="rpt-num">—</div>
@@ -561,147 +348,243 @@ textarea{resize:vertical;min-height:68px;line-height:1.5}
     </div>
     <div class="report-body">
       <div class="info-grid">
-        <div class="info-item">
-          <div class="info-label">Empresa cliente</div>
-          <div class="info-value" id="rpt-company">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">RUT / ID empresa</div>
-          <div class="info-value" id="rpt-company-id">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Industria</div>
-          <div class="info-value" id="rpt-industry">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Ubicación / planta</div>
-          <div class="info-value" id="rpt-location">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Activo inspeccionado</div>
-          <div class="info-value" id="rpt-asset">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Tag / código del activo</div>
-          <div class="info-value" id="rpt-tag">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Tipo de activo</div>
-          <div class="info-value" id="rpt-asset-type">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Material del activo</div>
-          <div class="info-value" id="rpt-material">—</div>
-        </div>
-        <div class="info-item full">
-          <div class="info-label">Descripción y condición del activo</div>
-          <div class="info-value" id="rpt-desc">—</div>
-        </div>
-        <div class="info-item full">
-          <div class="info-label">Objetivo de la inspección</div>
-          <div class="info-value" id="rpt-goal">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Entregables esperados</div>
-          <div class="info-value" id="rpt-deliverables">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Tipo de inspección</div>
-          <div class="info-value" id="rpt-insp-mode">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Fecha de inspección</div>
-          <div class="info-value" id="rpt-date">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">N° vuelos planificados</div>
-          <div class="info-value" id="rpt-flights">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Piloto / operador</div>
-          <div class="info-value" id="rpt-pilot">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Empresa operadora</div>
-          <div class="info-value" id="rpt-op-company">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Inspector / supervisor</div>
-          <div class="info-value" id="rpt-inspector">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Contacto cliente en sitio</div>
-          <div class="info-value" id="rpt-contact">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Fecha de generación</div>
-          <div class="info-value" id="rpt-generated">—</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Correo del piloto</div>
-          <div class="info-value" id="rpt-email">—</div>
-        </div>
+        <div class="info-item"><div class="info-label">Empresa cliente</div><div class="info-value" id="rpt-company">—</div></div>
+        <div class="info-item"><div class="info-label">RUT / ID empresa</div><div class="info-value" id="rpt-company-id">—</div></div>
+        <div class="info-item"><div class="info-label">Industria</div><div class="info-value" id="rpt-industry">—</div></div>
+        <div class="info-item"><div class="info-label">Ubicación / planta</div><div class="info-value" id="rpt-location">—</div></div>
+        <div class="info-item"><div class="info-label">Activo inspeccionado</div><div class="info-value" id="rpt-asset">—</div></div>
+        <div class="info-item"><div class="info-label">Tag / código</div><div class="info-value" id="rpt-tag">—</div></div>
+        <div class="info-item"><div class="info-label">Tipo de activo</div><div class="info-value" id="rpt-asset-type">—</div></div>
+        <div class="info-item"><div class="info-label">Material</div><div class="info-value" id="rpt-material">—</div></div>
+        <div class="info-item full"><div class="info-label">Descripción del activo</div><div class="info-value" id="rpt-desc">—</div></div>
+        <div class="info-item full"><div class="info-label">Objetivo de la inspección</div><div class="info-value" id="rpt-goal">—</div></div>
+        <div class="info-item"><div class="info-label">Entregables</div><div class="info-value" id="rpt-deliverables">—</div></div>
+        <div class="info-item"><div class="info-label">Tipo de inspección</div><div class="info-value" id="rpt-insp-mode">—</div></div>
+        <div class="info-item"><div class="info-label">Fecha de inspección</div><div class="info-value" id="rpt-date">—</div></div>
+        <div class="info-item"><div class="info-label">N° vuelos planificados</div><div class="info-value" id="rpt-flights">—</div></div>
+        <div class="info-item"><div class="info-label">Piloto / operador</div><div class="info-value" id="rpt-pilot">—</div></div>
+        <div class="info-item"><div class="info-label">Empresa operadora</div><div class="info-value" id="rpt-op-company">—</div></div>
+        <div class="info-item"><div class="info-label">Inspector / supervisor</div><div class="info-value" id="rpt-inspector">—</div></div>
+        <div class="info-item"><div class="info-label">Contacto cliente</div><div class="info-value" id="rpt-contact">—</div></div>
+        <div class="info-item"><div class="info-label">Fecha de generación</div><div class="info-value" id="rpt-generated">—</div></div>
+        <div class="info-item"><div class="info-label">Correo piloto</div><div class="info-value" id="rpt-email">—</div></div>
       </div>
     </div>
   </div>
 
-  <!-- Banner nivel de riesgo -->
   <div id="risk-banner" class="risk-banner">
     <div class="risk-label">Nivel de dificultad de misión</div>
     <div class="risk-level" id="risk-level-text">—</div>
     <div class="risk-sub" id="risk-sub-text">—</div>
   </div>
-
-  <!-- Métricas -->
   <div class="metrics">
-    <div class="metric-card">
-      <div class="metric-label">Riesgo inicial</div>
-      <div class="metric-val" id="initial-score">—</div>
-      <div class="metric-sub">sin mitigación</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Riesgo residual</div>
-      <div class="metric-val" id="residual-score">—</div>
-      <div class="metric-sub">aplicando SOP</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Reducción de riesgo</div>
-      <div class="metric-val" id="risk-reduction">—</div>
-      <div class="metric-sub">con mitigaciones</div>
-    </div>
+    <div class="metric-card"><div class="metric-label">Riesgo inicial</div><div class="metric-val" id="initial-score">—</div><div class="metric-sub">sin mitigación</div></div>
+    <div class="metric-card"><div class="metric-label">Riesgo residual</div><div class="metric-val" id="residual-score">—</div><div class="metric-sub">aplicando SOP</div></div>
+    <div class="metric-card"><div class="metric-label">Reducción de riesgo</div><div class="metric-val" id="risk-reduction">—</div><div class="metric-sub">con mitigaciones</div></div>
   </div>
-
-  <!-- Barra de progreso -->
   <div class="section">
     <div class="section-title">Barra de riesgo inicial</div>
-    <div class="progress-wrap">
-      <div class="progress-bar" id="progress-bar" style="width:0%"></div>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:11px;color:#aaa;margin-top:4px">
-      <span>Bajo (0–35)</span><span>Medio (36–65)</span><span>Alto (66–100)</span>
-    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:#aaa;margin-top:4px"><span>Bajo (0–35)</span><span>Medio (36–65)</span><span>Alto (66–100)</span></div>
   </div>
+  <div class="section"><div class="section-title">Detalle por factor de riesgo</div><div id="hazard-list"></div></div>
+  <div class="section"><div class="section-title">Recomendaciones de mitigación (por prioridad)</div><div id="rec-list"></div></div>
+</div>
+</div><!-- fin tab-form -->
 
-  <!-- Detalle por factor -->
+<!-- ══════════════════════════════════════════
+     TAB: REPOSITORIO
+══════════════════════════════════════════ -->
+<div id="tab-repo" class="repo-view">
+  <div class="page-header">
+    <h1>Repositorio de reportes</h1>
+    <p>Historial de evaluaciones de riesgo guardadas en Google Sheets.</p>
+  </div>
   <div class="section">
-    <div class="section-title">Detalle por factor de riesgo</div>
-    <div id="hazard-list"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:8px">
+      <span style="font-size:13px;color:#888" id="repo-count">—</span>
+      <button class="btn btn-secondary" onclick="loadRepo()">↻ Actualizar</button>
+    </div>
+    <div class="table-wrap">
+      <table id="repo-table">
+        <thead><tr>
+          <th>N° Reporte</th><th>Fecha</th><th>Empresa</th><th>Activo</th><th>Piloto</th>
+          <th>Riesgo inicial</th><th>Riesgo residual</th><th>Nivel</th>
+        </tr></thead>
+        <tbody id="repo-body"><tr><td colspan="8" style="text-align:center;color:#aaa;padding:2rem">Carga el repositorio para ver los reportes →</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TAB: DASHBOARD
+══════════════════════════════════════════ -->
+<div id="tab-dash" class="dash-view">
+  <div class="page-header">
+    <h1>Dashboard de estadísticas</h1>
+    <p>Análisis de todas las evaluaciones guardadas en Google Sheets.</p>
+  </div>
+  <div id="dash-content">
+    <div class="dash-empty">Carga los datos desde Google Sheets para ver las estadísticas.<br><br><button class="btn btn-dark" onclick="loadDash()">Cargar datos del dashboard</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TAB: CONFIGURACIÓN
+══════════════════════════════════════════ -->
+<div id="tab-cfg" class="cfg-view">
+  <div class="page-header">
+    <h1>Configuración de Google Sheets</h1>
+    <p>Sigue estos pasos una sola vez para conectar la app con tu hoja de cálculo.</p>
   </div>
 
-  <!-- Recomendaciones -->
   <div class="section">
-    <div class="section-title">Recomendaciones de mitigación (ordenadas por prioridad)</div>
-    <div id="rec-list"></div>
+    <div class="section-title">Pasos de configuración</div>
+    <div class="cfg-steps">
+
+      <div class="cfg-step">
+        <div class="cfg-step-num">1</div>
+        <div class="cfg-step-body">
+          <h4>Crea una hoja de cálculo en Google Sheets</h4>
+          <p>Abre <a href="https://sheets.google.com" target="_blank">Google Sheets</a> y crea una hoja nueva. Ponle el nombre que quieras, por ejemplo <code>Elios3_Reportes</code>. Asegúrate de estar conectado con tu cuenta de Google.</p>
+        </div>
+      </div>
+
+      <div class="cfg-step">
+        <div class="cfg-step-num">2</div>
+        <div class="cfg-step-body">
+          <h4>Abre el editor de Apps Script</h4>
+          <p>Dentro de la hoja, ve al menú <code>Extensiones → Apps Script</code>. Se abrirá el editor de código de Google.</p>
+        </div>
+      </div>
+
+      <div class="cfg-step">
+        <div class="cfg-step-num">3</div>
+        <div class="cfg-step-body">
+          <h4>Pega el siguiente código</h4>
+          <p>Borra todo el contenido del editor y pega exactamente este código. Luego guarda con <code>Ctrl+S</code>:</p>
+          <div style="background:#1a1a1a;color:#e8e8e8;border-radius:8px;padding:1rem;margin-top:10px;font-size:12px;font-family:monospace;line-height:1.6;overflow-x:auto;white-space:pre">const SHEET_NAME = "Reportes";
+
+function doPost(e) {
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet = ss.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      sheet = ss.insertSheet(SHEET_NAME);
+      sheet.appendRow([
+        "N° Reporte","Fecha Inspección","Fecha Generación",
+        "Empresa","RUT Empresa","Industria","Ubicación",
+        "Activo","Tag Activo","Tipo Activo","Material",
+        "Descripción","Objetivo","Entregables","Tipo Inspección","Confidencial",
+        "Piloto","Email Piloto","Empresa Operadora",
+        "Inspector","Contacto Sitio","Teléfono Sitio",
+        "N° Vuelos","Riesgo Inicial","Riesgo Residual","Nivel Riesgo",
+        "Factores Alto","Factores Medio","Factores Bajo"
+      ]);
+    }
+    const d = JSON.parse(e.postData.contents);
+    sheet.appendRow([
+      d.reportNum, d.inspDate, d.generatedAt,
+      d.company, d.companyId, d.industry, d.location,
+      d.assetName, d.assetTag, d.assetType, d.assetMaterial,
+      d.assetDesc, d.inspGoal, d.deliverables, d.inspMode, d.confidential,
+      d.pilotName, d.pilotEmail, d.operatorCompany,
+      d.inspectorName, d.siteContact, d.sitePhone,
+      d.numFlights, d.initialScore, d.residualScore, d.riskLevel,
+      d.highFactors, d.medFactors, d.lowFactors
+    ]);
+    return ContentService.createTextOutput(
+      JSON.stringify({ok:true})
+    ).setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService.createTextOutput(
+      JSON.stringify({ok:false, error:err.message})
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet(e) {
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName(SHEET_NAME);
+    if (!sheet) return ContentService.createTextOutput(
+      JSON.stringify({ok:true, rows:[]})
+    ).setMimeType(ContentService.MimeType.JSON);
+    const data = sheet.getDataRange().getValues();
+    const headers = data[0];
+    const rows = data.slice(1).map(r => {
+      const obj = {};
+      headers.forEach((h,i) => obj[h] = r[i]);
+      return obj;
+    });
+    return ContentService.createTextOutput(
+      JSON.stringify({ok:true, rows})
+    ).setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService.createTextOutput(
+      JSON.stringify({ok:false, error:err.message})
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+}</div>
+        </div>
+      </div>
+
+      <div class="cfg-step">
+        <div class="cfg-step-num">4</div>
+        <div class="cfg-step-body">
+          <h4>Despliega como aplicación web</h4>
+          <p>En el editor de Apps Script, haz clic en <code>Implementar → Nueva implementación</code>. Selecciona tipo <code>Aplicación web</code>. En el campo <strong>"Quién tiene acceso"</strong> elige <code>Cualquier usuario</code>. Haz clic en <strong>Implementar</strong> y autoriza los permisos cuando te lo solicite.</p>
+        </div>
+      </div>
+
+      <div class="cfg-step">
+        <div class="cfg-step-num">5</div>
+        <div class="cfg-step-body">
+          <h4>Copia la URL de la aplicación web y pégala aquí</h4>
+          <p>Después de implementar, Google te mostrará una URL que empieza con <code>https://script.google.com/macros/s/...</code>. Cópiala y pégala abajo:</p>
+          <div class="cfg-url-field">
+            <input type="text" id="sheets-url" placeholder="https://script.google.com/macros/s/XXXXXXX/exec">
+            <button class="btn btn-primary" onclick="saveUrl()">Guardar URL</button>
+          </div>
+          <div id="url-saved" style="font-size:12px;color:#3a6b12;margin-top:6px;display:none">✅ URL guardada correctamente.</div>
+          <div id="url-error" style="font-size:12px;color:#c83030;margin-top:6px;display:none">⚠ La URL no parece válida. Verifica que empiece con https://script.google.com</div>
+        </div>
+      </div>
+
+      <div class="cfg-step">
+        <div class="cfg-step-num">6</div>
+        <div class="cfg-step-body">
+          <h4>¡Listo! Prueba guardando tu primera evaluación</h4>
+          <p>Vuelve a la pestaña <strong>Nueva evaluación</strong>, completa el formulario y haz clic en <strong>"Guardar en Google Sheets"</strong>. El reporte aparecerá automáticamente en tu hoja de cálculo.</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-</div><!-- fin result-view -->
+  <div class="section">
+    <div class="section-title">Estado actual de la conexión</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-size:13px;color:#555;margin-bottom:4px">URL configurada:</div>
+        <div style="font-size:12px;color:#888;word-break:break-all" id="current-url-display">No configurada</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-secondary" onclick="testConnection()">Probar conexión</button>
+        <button class="btn btn-secondary" onclick="clearUrl()">Borrar URL</button>
+      </div>
+    </div>
+    <div id="conn-status" style="font-size:12px;margin-top:10px;display:none"></div>
+  </div>
+</div>
 
 </div><!-- container -->
 
 <script>
-function g(id){return document.getElementById(id)}
-function gv(id){return g(id).value.trim()}
-
+// ═══════════════════════════════════════════════
+// CONSTANTES Y ESTADO
+// ═══════════════════════════════════════════════
 const FACTORS=[
   {name:"Experiencia del piloto",id:"exp",w:3},
   {name:"Entrenamiento completado",id:"train",w:2},
@@ -710,178 +593,482 @@ const FACTORS=[
   {name:"Posición del piloto",id:"pilot_pos",w:2},
   {name:"Gestión de batería",id:"battery",w:3},
   {name:"Método de pilotaje",id:"pilot_method",w:3},
-  {name:"Información del asset disponible",id:"asset_info",w:2},
-  {name:"Temperatura en sitio",id:"temp",w:2},
-  {name:"Tamaño del área de vuelo",id:"area_size",w:3},
+  {name:"Información del asset",id:"asset_info",w:2},
+  {name:"Temperatura",id:"temp",w:2},
+  {name:"Tamaño área de vuelo",id:"area_size",w:3},
   {name:"Viento / flujo de aire",id:"wind",w:3},
   {name:"Distancia a volar",id:"dist",w:2},
   {name:"Visibilidad",id:"vis",w:2},
-  {name:"Apertura más estrecha (manhole)",id:"narrow",w:3},
-  {name:"Textura de paredes del activo",id:"texture",w:2},
+  {name:"Apertura más estrecha",id:"narrow",w:3},
+  {name:"Textura de paredes",id:"texture",w:2},
   {name:"Superficie a inspeccionar",id:"surface",w:2},
   {name:"Altitud máxima del dron",id:"altitude",w:2},
-  {name:"Riesgo de daños físicos al dron",id:"dmg",w:3},
+  {name:"Riesgo de daños físicos",id:"dmg",w:3},
   {name:"Oscuridad del entorno",id:"dark",w:2},
-  {name:"Calidad de señal esperada",id:"signal",w:3},
-  {name:"Recuperación del dron en incidente",id:"recover",w:3},
-  {name:"Consecuencia si no se recupera",id:"consequence",w:3},
-  {name:"Sustancias peligrosas presentes",id:"hazmat",w:4},
-  {name:"Presencia de agua / líquido",id:"water",w:3},
+  {name:"Calidad de señal",id:"signal",w:3},
+  {name:"Recuperación en incidente",id:"recover",w:3},
+  {name:"Consecuencia sin recuperación",id:"consequence",w:3},
+  {name:"Sustancias peligrosas",id:"hazmat",w:4},
+  {name:"Presencia de agua",id:"water",w:3},
   {name:"Alcance de la inspección",id:"insp_type",w:2},
 ];
 
 const RECS={
-  exp:{0:"Piloto con menos de 2 misiones: completar entrenamiento introductorio online antes de volar. No ejecutar misiones de alta complejidad.",1:"Completar entrenamiento introductorio presencial. Realizar vuelo de práctica previo a la misión real.",2:"Piloto certificado con experiencia suficiente — proceder con los protocolos estándar del SOP."},
-  train:{0:"Completar al menos el módulo introductorio online antes de la misión.",1:"Entrenamiento presencial completado — correcto para misiones de dificultad media.",2:"Certificación AIIM completada — habilitado para misiones de alta complejidad y espacios muy confinados."},
-  flight_type:{0:"Vuelo indoor en espacio abierto — bajo riesgo de colisión.",1:"Espacio confinado: verificar integridad de la cage antes de volar. Planificar ruta de salida de emergencia.",2:"Espacio muy confinado o outdoor: activar modo MANUAL. Solo pilotos con certificación AIIM. Vuelo de reco previo obligatorio."},
-  compliance:{0:"Permisos en regla — proceder con la misión.",1:"Obtener todos los permisos pendientes antes del día de la misión. No operar con aprobaciones incompletas.",2:"No operar hasta resolver restricciones. Zona NFZ requiere autorización específica de la autoridad aérea competente."},
-  pilot_pos:{0:"Piloto dentro del asset — mantener comunicación constante con el equipo exterior durante todo el vuelo.",1:"Piloto fuera del asset — asegurar línea de visión directa o usar el cockpit para BVLOS."},
-  battery:{0:"Baterías en buen estado. Regla crítica del SOP: no superar 9 min de vuelo ni bajar de 20V. El piloto y spotter deben monitorear activamente.",1:"Reserva limitada: monitorear voltaje cada 2 minutos. Aterrizar con margen de seguridad amplio antes de agotar la carga.",2:"Sin cargador en sitio: planificar número exacto de vuelos con baterías disponibles. No improvisar carga con equipos no certificados."},
-  pilot_method:{0:"VLOS: mantener distancia máxima de 75 m entre piloto y dron en todo momento.",1:"BVLOS en entorno seguro: activar función 'Return to signal'. Designar al menos un spotter en posición estratégica.",2:"BVLOS en entorno inaccesible: uso obligatorio del cockpit. Mínimo un spotter adicional. Plan de contingencia previo al vuelo."},
-  asset_info:{0:"Información suficiente del asset — planificar rutas de vuelo antes de la misión.",1:"Información limitada: realizar vuelo de reconocimiento (reco) antes de la inspección sistemática.",2:"Sin información previa: vuelo reco obligatorio como primer vuelo. No planificar inspección sistemática sin reco previo."},
-  temp:{0:"Temperatura dentro del rango operativo óptimo (10°C–40°C) — condiciones ideales.",1:"Temperatura baja (0°C–10°C): calentar las baterías antes de instalarlas. Monitorear rendimiento durante el vuelo.",2:"Temperatura bajo 0°C: fuera de especificación del fabricante. No operar salvo autorización expresa y protocolo especial."},
-  area_size:{0:"Área de vuelo adecuada para modo ASSIST — condiciones normales.",1:"Área pequeña (1–3 m): cambiar a modo ATTI. Mayor concentración y control manual requerido del piloto.",2:"Área muy reducida (menos de 1 m): modo MANUAL obligatorio. Exclusivo para pilotos con entrenamiento AIIM."},
-  wind:{0:"Sin viento — condiciones ideales para el vuelo.",1:"Viento leve: verificar comportamiento del dron inmediatamente después del despegue antes de continuar.",2:"Viento fuerte: usar anemómetro antes de volar. Solo operar bajo 7 m/s. Cancelar si supera el umbral del SOP."},
-  dist:{0:"Distancia corta (0–50 m) — bajo riesgo operacional.",1:"Distancia media (50–100 m): verificar calidad de señal regularmente. Monitorear indicador de conexión.",2:"Distancia larga (100–150 m): evaluar posicionamiento de antenas o relay de señal. Riesgo elevado de pérdida de control."},
-  vis:{0:"Visibilidad limpia — condiciones óptimas para captura de imágenes.",1:"Polvo moderado: limpiar lentes de cámara, optic flow y ventana LiDAR antes de cada vuelo.",2:"Visibilidad muy reducida: volar a velocidad mínima. Evaluar si posponer la misión para evitar comprometer la seguridad."},
-  narrow:{0:"Apertura amplia — sin restricciones de maniobra para el dron.",1:"Manhole entre 80 cm y 1 m: verificar que el dron pase con margen suficiente. Entrada y salida lenta y controlada.",2:"Apertura de 50–80 cm: solo pilotos con experiencia alta. Evaluar viabilidad real de ingreso antes de comprometer la operación."},
-  texture:{0:"Paredes texturadas — el sistema de posicionamiento visual y LiDAR funciona correctamente.",1:"Pocas texturas: el posicionamiento puede degradarse gradualmente. Mayor atención al pilotaje manual requerida.",2:"Sin texturas / superficies uniformes: alto riesgo de deriva del dron. Usar modo MANUAL. Volar muy lento."},
-  surface:{0:"Superficie no reflectante — cámara e inspección funcionan sin interferencias.",1:"Superficie brillante: ajustar exposición y balance de cámara. Puede afectar la calidad de imágenes capturadas.",2:"Superficie muy brillante o espejada: puede saturar la cámara y dificultar el posicionamiento óptico. Planificar ángulos alternativos."},
-  altitude:{0:"Altitud baja (0–20 m) — fácil monitoreo visual y recuperación ante incidente.",1:"Altitud media (20–60 m): monitorear nivel de batería con mayor frecuencia. Mayor riesgo de pérdida de señal.",2:"Altitud alta (60–200 m): riesgo significativo de pérdida. Verificar señal, batería y comportamiento del dron constantemente."},
-  dmg:{0:"Sin objetos de riesgo identificados en el área de vuelo.",1:"Pocos objetos presentes: navegar con precaución. Reducir velocidad al acercarse a estructuras.",2:"Riesgo alto de enganche o caída de objetos sobre el dron: volar a velocidad mínima. Evaluar si es seguro continuar."},
-  dark:{0:"Iluminación suficiente — activar LES del dron para posicionamiento en zonas oscuras.",1:"Zona parcialmente iluminada: activar luces del dron al máximo. Ajustar ISO de la cámara para mejorar imagen.",2:"Oscuridad total en área amplia: preparar sistema de iluminación adicional externo al dron antes de la misión."},
-  signal:{0:"Señal estable prevista — sin obstrucciones significativas entre dron y antenas del controlador.",1:"Posible pérdida de señal en entorno metálico: activar 'Return to signal'. Monitorear indicador de señal activamente.",2:"Alto riesgo de pérdida de señal en entorno de concreto: posicionar antenas estratégicamente. Spotter con comunicación directa obligatorio."},
-  recover:{0:"Recuperación del dron sin dificultad prevista en caso de incidente.",1:"Recuperación requiere permiso de entrada al espacio: coordinar con site manager antes de iniciar cualquier vuelo.",2:"Recuperación imposible en caso de incidente: evaluar consecuencias antes de operar. Documentar la decisión formalmente."},
-  consequence:{0:"Sin riesgo para el asset si el dron queda en el lugar.",1:"Riesgo bajo para el asset: documentar ubicación exacta ante cualquier incidente durante el vuelo.",2:"Alto riesgo para el asset si el dron queda en el lugar: definir plan de contingencia obligatorio antes de comenzar la misión."},
-  hazmat:{0:"Sin sustancias peligrosas identificadas — condiciones estándar de operación.",1:"Sustancias peligrosas presentes: consultar MSDS del sitio. Usar EPP adecuado. Informar a todo el equipo antes de volar.",2:"Sustancias explosivas o altamente inflamables: cargar baterías en zona segura y alejada. Extintor obligatorio en sitio. Verificar certificación ATEX del área."},
-  water:{0:"Sin agua ni líquidos en el área de vuelo.",1:"Agua menor a 2 cm de profundidad: el dron no puede aterrizar allí. Planificar un punto de aterrizaje alternativo seguro.",2:"Vuelo sobre agua o líquido: riesgo de pérdida total del equipo. Solo ejecutar si es estrictamente necesario y con protocolo de contingencia."},
-  insp_type:{0:"Inspección local — alcance acotado y manejable. Baja complejidad logística.",1:"Inspección sistemática parcial: planificar vuelos secuenciados con objetivos claros para cada uno.",2:"Inspección sistemática total de la instalación: múltiples vuelos y baterías. Planificación detallada y rigurosa obligatoria antes de la misión."},
+  exp:{0:"Piloto novato: completar entrenamiento introductorio online. No ejecutar misiones complejas.",1:"Completar entrenamiento presencial. Realizar vuelo de práctica previo.",2:"Piloto certificado — aplicar protocolos estándar del SOP."},
+  train:{0:"Completar módulo introductorio online antes de la misión.",1:"Entrenamiento presencial completado — apto para misiones de dificultad media.",2:"Certificación AIIM completada — habilitado para alta complejidad."},
+  flight_type:{0:"Indoor abierto — bajo riesgo de colisión.",1:"Espacio confinado: verificar cage, planificar ruta de salida de emergencia.",2:"Muy confinado / outdoor: modo MANUAL obligatorio. Solo pilotos con AIIM."},
+  compliance:{0:"Permisos en regla — proceder con la misión.",1:"Obtener permisos pendientes antes del día de misión.",2:"No operar. Zona NFZ requiere autorización de la autoridad aérea."},
+  pilot_pos:{0:"Dentro del asset — mantener comunicación con equipo exterior.",1:"Fuera del asset — asegurar línea de visión o usar cockpit."},
+  battery:{0:"Regla crítica: no superar 9 min de vuelo ni bajar de 20V.",1:"Reserva limitada: monitorear voltaje cada 2 min. Aterrizar con margen.",2:"Sin cargador: planificar vuelos exactos con baterías disponibles."},
+  pilot_method:{0:"VLOS: distancia máxima 75 m entre piloto y dron.",1:"BVLOS seguro: activar 'Return to signal'. Designar un spotter.",2:"BVLOS inaccesible: cockpit obligatorio. Al menos un spotter adicional."},
+  asset_info:{0:"Información suficiente — planificar rutas previo a la misión.",1:"Información limitada: realizar vuelo de reconocimiento primero.",2:"Sin info previa: vuelo reco obligatorio como primer vuelo."},
+  temp:{0:"Temperatura óptima (10°C–40°C).",1:"Temperatura baja: precalentar baterías. Monitorear rendimiento.",2:"Bajo 0°C: fuera de especificación. No operar sin autorización expresa."},
+  area_size:{0:"Área adecuada — modo ASSIST.",1:"Área pequeña: modo ATTI. Mayor control manual requerido.",2:"Área muy reducida: modo MANUAL obligatorio. Solo pilotos AIIM."},
+  wind:{0:"Sin viento — condiciones ideales.",1:"Viento leve: verificar comportamiento del dron tras despegue.",2:"Viento fuerte: usar anemómetro. Solo operar bajo 7 m/s."},
+  dist:{0:"Distancia corta — bajo riesgo.",1:"Distancia media: verificar señal regularmente.",2:"Distancia larga: evaluar relay de señal. Riesgo alto de pérdida."},
+  vis:{0:"Visibilidad limpia — condiciones óptimas.",1:"Polvo moderado: limpiar lentes antes de cada vuelo.",2:"Visibilidad reducida: velocidad mínima. Evaluar posponer misión."},
+  narrow:{0:"Apertura amplia — sin restricciones.",1:"Manhole 80 cm–1 m: verificar margen de paso. Entrada lenta.",2:"Apertura 50–80 cm: solo pilotos expertos. Evaluar viabilidad."},
+  texture:{0:"Paredes texturadas — LiDAR funciona correctamente.",1:"Pocas texturas: posicionamiento puede degradarse. Mayor atención manual.",2:"Sin texturas: alto riesgo de deriva. Modo MANUAL y velocidad mínima."},
+  surface:{0:"Superficie no reflectante — sin interferencias.",1:"Brillante: ajustar exposición. Puede afectar calidad de imágenes.",2:"Muy brillante: puede saturar cámara y afectar posicionamiento óptico."},
+  altitude:{0:"Altitud baja — fácil monitoreo.",1:"Altitud media: monitorear batería más frecuentemente.",2:"Altitud alta: verificar señal, batería y comportamiento constantemente."},
+  dmg:{0:"Sin objetos de riesgo en el área.",1:"Pocos objetos: reducir velocidad cerca de estructuras.",2:"Riesgo alto de enganche: velocidad mínima. Evaluar continuar la misión."},
+  dark:{0:"Iluminación suficiente — activar LES.",1:"Parcialmente iluminado: luces al máximo. Ajustar ISO de cámara.",2:"Oscuridad total: preparar iluminación adicional externa."},
+  signal:{0:"Señal estable prevista.",1:"Posible pérdida metálico: activar 'Return to signal'. Monitorear.",2:"Alto riesgo señal concreto: posicionar antenas estratégicamente. Spotter obligatorio."},
+  recover:{0:"Recuperación sin dificultad.",1:"Requiere permiso: coordinar con site manager antes de volar.",2:"Imposible recuperar: evaluar consecuencias. Documentar decisión."},
+  consequence:{0:"Sin riesgo para el asset.",1:"Riesgo bajo: documentar ubicación ante incidente.",2:"Alto riesgo: plan de contingencia obligatorio antes de la misión."},
+  hazmat:{0:"Sin sustancias peligrosas.",1:"Sustancias presentes: consultar MSDS. EPP adecuado. Informar al equipo.",2:"Explosivos / inflamables: carga de baterías en zona segura. Extintor obligatorio. Verificar ATEX."},
+  water:{0:"Sin agua.",1:"Agua <2 cm: no puede aterrizar. Planificar punto alternativo.",2:"Sobre agua / líquido: riesgo de pérdida total. Solo si es estrictamente necesario."},
+  insp_type:{0:"Inspección local — alcance acotado.",1:"Sistemática parcial: planificar vuelos secuenciados.",2:"Sistemática total: planificación rigurosa y múltiples baterías obligatorio."},
 };
 
-function setInfo(id, val){
-  const el=g(id);
-  if(val){el.textContent=val;el.className="info-value";}
-  else{el.textContent="No especificado";el.className="info-value empty";}
+let lastReport=null;
+
+// ═══════════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════════
+function showTab(tab){
+  ['form','repo','dash','cfg'].forEach(t=>{
+    document.getElementById('tab-'+t).style.display=(t===tab)?'block':'none';
+  });
+  document.querySelectorAll('.nav-tab').forEach((btn,i)=>{
+    btn.classList.toggle('active',['form','repo','dash','cfg'][i]===tab);
+  });
+  if(tab==='cfg') refreshCfgDisplay();
+  if(tab==='repo') loadRepo();
+  if(tab==='dash') loadDash();
 }
 
-function fillReport(){
-  const company=gv("company");
-  const asset=gv("asset_name");
-  const dateRaw=gv("insp_date");
-  const dateFormatted=dateRaw?new Date(dateRaw+"T12:00:00").toLocaleDateString("es-CL",{day:"2-digit",month:"long",year:"numeric"}):"";
-  const rnum=gv("report_num")||(("ERA-")+new Date().getFullYear()+"-"+String(Math.floor(Math.random()*900)+100));
-  const isConf=g("confidential").value==="Sí";
+// ═══════════════════════════════════════════════
+// GOOGLE SHEETS URL
+// ═══════════════════════════════════════════════
+function getSheetsUrl(){return localStorage.getItem('elios3_sheets_url')||'';}
 
-  g("rpt-subtitle").textContent=(company||"—")+" · "+(asset||"—");
-  g("rpt-num").textContent=rnum;
-  g("rpt-conf").style.display=isConf?"block":"none";
-
-  setInfo("rpt-company", company);
-  setInfo("rpt-company-id", gv("company_id"));
-  setInfo("rpt-industry", g("industry").value||null);
-  setInfo("rpt-location", gv("location"));
-  setInfo("rpt-asset", asset);
-  setInfo("rpt-tag", gv("asset_tag"));
-  setInfo("rpt-asset-type", g("asset_type").value||null);
-  setInfo("rpt-material", gv("asset_material"));
-  setInfo("rpt-desc", gv("asset_desc"));
-  setInfo("rpt-goal", gv("insp_goal"));
-  setInfo("rpt-deliverables", gv("deliverables"));
-  setInfo("rpt-insp-mode", g("insp_mode").value||null);
-  setInfo("rpt-date", dateFormatted);
-  setInfo("rpt-flights", gv("num_flights")?gv("num_flights")+" vuelos":null);
-  const pilotText=gv("pilot_name");
-  setInfo("rpt-pilot", pilotText);
-  setInfo("rpt-email", gv("pilot_email"));
-  setInfo("rpt-op-company", gv("operator_company"));
-  setInfo("rpt-inspector", gv("inspector_name"));
-  const contactText=gv("site_contact")+(gv("site_phone")?" · "+gv("site_phone"):"");
-  setInfo("rpt-contact", contactText||null);
-  g("rpt-generated").textContent=new Date().toLocaleString("es-CL",{dateStyle:"long",timeStyle:"short"});
+function saveUrl(){
+  const url=document.getElementById('sheets-url').value.trim();
+  const valid=url.startsWith('https://script.google.com');
+  document.getElementById('url-saved').style.display=valid?'block':'none';
+  document.getElementById('url-error').style.display=valid?'none':'block';
+  if(valid){
+    localStorage.setItem('elios3_sheets_url',url);
+    refreshCfgDisplay();
+    updateBanner();
+  }
 }
+
+function clearUrl(){
+  localStorage.removeItem('elios3_sheets_url');
+  document.getElementById('sheets-url').value='';
+  refreshCfgDisplay();
+  updateBanner();
+}
+
+function refreshCfgDisplay(){
+  const url=getSheetsUrl();
+  document.getElementById('current-url-display').textContent=url||'No configurada';
+  document.getElementById('sheets-url').value=url;
+}
+
+function updateBanner(){
+  document.getElementById('cfg-banner').style.display=getSheetsUrl()?'none':'flex';
+}
+
+async function testConnection(){
+  const url=getSheetsUrl();
+  const el=document.getElementById('conn-status');
+  el.style.display='block';
+  if(!url){el.style.color='#c83030';el.textContent='⚠ No hay URL configurada.';return;}
+  el.style.color='#888';el.textContent='Probando conexión...';
+  try{
+    const r=await fetch(url);
+    const d=await r.json();
+    if(d.ok!==undefined){el.style.color='#3a6b12';el.textContent='✅ Conexión exitosa con Google Sheets.';}
+    else{el.style.color='#c83030';el.textContent='⚠ La URL respondió pero con error: '+JSON.stringify(d);}
+  }catch(e){
+    el.style.color='#c83030';el.textContent='⚠ No se pudo conectar. Verifica la URL y los permisos de la app web.';
+  }
+}
+
+// ═══════════════════════════════════════════════
+// FORMULARIO Y CÁLCULO DE RIESGO
+// ═══════════════════════════════════════════════
+function g(id){return document.getElementById(id);}
+function gv(id){return g(id).value.trim();}
 
 function calcRisk(){
-  const missing=!gv("company")||!gv("asset_name")||!gv("insp_date")||!gv("pilot_name");
-  const errEl=g("req-error");
-  errEl.style.display=missing?"block":"none";
-  if(missing){errEl.scrollIntoView({behavior:"smooth",block:"center"});return;}
+  const missing=!gv('company')||!gv('asset_name')||!gv('insp_date')||!gv('pilot_name');
+  g('req-error').style.display=missing?'block':'none';
+  if(missing){g('req-error').scrollIntoView({behavior:'smooth',block:'center'});return;}
 
-  fillReport();
-
-  let initialScore=0, maxScore=0;
+  let initialScore=0,maxScore=0;
   const details=[];
   FACTORS.forEach(f=>{
     const v=parseInt(g(f.id).value);
     const raw=(v===0?1:v===1?3:4)*f.w;
-    maxScore+=4*f.w;
-    initialScore+=raw;
-    const lvl=v===0?"bajo":v===1?"medio":"alto";
+    maxScore+=4*f.w; initialScore+=raw;
+    const lvl=v===0?'bajo':v===1?'medio':'alto';
     details.push({name:f.name,level:lvl,rec:RECS[f.id][v]});
   });
 
   const pct=Math.round((initialScore/maxScore)*100);
   let residualPct,riskLevel,riskSub,bannerStyle,barClass;
-
   if(pct<=35){
-    riskLevel="BAJO";
-    riskSub="La misión puede ejecutarse siguiendo los procedimientos estándar del SOP Elios 3.";
-    residualPct=Math.round(pct*0.50);
-    bannerStyle="background:#e8f5e1;color:#2d5c0e;border:1px solid #c5e0a8";
-    barClass="bar-low";
-  } else if(pct<=65){
-    riskLevel="MEDIO";
-    riskSub="Se requieren mitigaciones específicas. Revisar las recomendaciones antes de ejecutar la misión.";
-    residualPct=Math.round(pct*0.55);
-    bannerStyle="background:#fff3d6;color:#6a3f08;border:1px solid #f5d48a";
-    barClass="bar-med";
-  } else {
-    riskLevel="ALTO";
-    riskSub="Misión de alta complejidad. Revisar todas las mitigaciones y aprobar con supervisor antes de proceder.";
-    residualPct=Math.round(pct*0.62);
-    bannerStyle="background:#fde8e8;color:#7a1a1a;border:1px solid #f0aaaa";
-    barClass="bar-high";
+    riskLevel='BAJO'; riskSub='La misión puede ejecutarse siguiendo los procedimientos estándar del SOP Elios 3.';
+    residualPct=Math.round(pct*0.50); bannerStyle='background:#e8f5e1;color:#2d5c0e;border:1px solid #c5e0a8'; barClass='bar-low';
+  }else if(pct<=65){
+    riskLevel='MEDIO'; riskSub='Se requieren mitigaciones específicas. Revisar recomendaciones antes de ejecutar.';
+    residualPct=Math.round(pct*0.55); bannerStyle='background:#fff3d6;color:#6a3f08;border:1px solid #f5d48a'; barClass='bar-med';
+  }else{
+    riskLevel='ALTO'; riskSub='Misión de alta complejidad. Aprobar con supervisor antes de proceder.';
+    residualPct=Math.round(pct*0.62); bannerStyle='background:#fde8e8;color:#7a1a1a;border:1px solid #f0aaaa'; barClass='bar-high';
   }
-
   const reduction=pct-residualPct;
 
-  g("risk-banner").style.cssText=bannerStyle+";border-radius:12px;padding:1.75rem;text-align:center;margin-bottom:1.25rem";
-  g("risk-level-text").textContent=riskLevel;
-  g("risk-sub-text").textContent=riskSub;
-  g("initial-score").textContent=pct+"/100";
-  g("residual-score").textContent=residualPct+"/100";
-  g("risk-reduction").textContent="-"+reduction+" pts";
+  // Relleno del encabezado del reporte
+  const rnum=gv('report_num')||('ERA-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*900)+100));
+  const dateRaw=gv('insp_date');
+  const dateFormatted=dateRaw?new Date(dateRaw+'T12:00:00').toLocaleDateString('es-CL',{day:'2-digit',month:'long',year:'numeric'}):'—';
+  const generatedAt=new Date().toLocaleString('es-CL',{dateStyle:'long',timeStyle:'short'});
+  const isConf=g('confidential').value==='Sí';
 
-  const bar=g("progress-bar");
-  bar.className="progress-bar "+barClass;
-  bar.style.width=pct+"%";
+  g('rpt-subtitle').textContent=(gv('company')||'—')+' · '+(gv('asset_name')||'—');
+  g('rpt-num').textContent=rnum;
+  g('rpt-conf').style.display=isConf?'block':'none';
 
-  const hl=g("hazard-list");
-  hl.innerHTML="";
+  function si(id,val){const el=g(id);el.textContent=val||'No especificado';el.className=val?'info-value':'info-value empty';}
+  si('rpt-company',gv('company')); si('rpt-company-id',gv('company_id'));
+  si('rpt-industry',g('industry').value); si('rpt-location',gv('location'));
+  si('rpt-asset',gv('asset_name')); si('rpt-tag',gv('asset_tag'));
+  si('rpt-asset-type',g('asset_type').value); si('rpt-material',gv('asset_material'));
+  si('rpt-desc',gv('asset_desc')); si('rpt-goal',gv('insp_goal'));
+  si('rpt-deliverables',gv('deliverables')); si('rpt-insp-mode',g('insp_mode').value);
+  g('rpt-date').textContent=dateFormatted; si('rpt-flights',gv('num_flights')?gv('num_flights')+' vuelos':null);
+  si('rpt-pilot',gv('pilot_name')); si('rpt-email',gv('pilot_email'));
+  si('rpt-op-company',gv('operator_company')); si('rpt-inspector',gv('inspector_name'));
+  si('rpt-contact',gv('site_contact')+(gv('site_phone')?' · '+gv('site_phone'):''));
+  g('rpt-generated').textContent=generatedAt;
+
+  // Banner riesgo
+  g('risk-banner').style.cssText=bannerStyle+';border-radius:12px;padding:1.75rem;text-align:center;margin-bottom:1.25rem';
+  g('risk-level-text').textContent=riskLevel;
+  g('risk-sub-text').textContent=riskSub;
+  g('initial-score').textContent=pct+'/100';
+  g('residual-score').textContent=residualPct+'/100';
+  g('risk-reduction').textContent='-'+reduction+' pts';
+
+  const bar=g('progress-bar');
+  bar.className='progress-bar '+barClass;
+  bar.style.width=pct+'%';
+
+  const hl=g('hazard-list'); hl.innerHTML='';
   details.forEach(d=>{
-    const bc=d.level==="bajo"?"b-low":d.level==="medio"?"b-med":"b-high";
+    const bc=d.level==='bajo'?'b-low':d.level==='medio'?'b-med':'b-high';
     hl.innerHTML+=`<div class="hazard-row"><span class="hazard-name">${d.name}</span><span class="badge ${bc}">${d.level}</span></div>`;
   });
 
-  const rl=g("rec-list");
-  rl.innerHTML="";
+  const rl=g('rec-list'); rl.innerHTML='';
   const order={alto:0,medio:1,bajo:2};
   [...details].sort((a,b)=>order[a.level]-order[b.level]).forEach(d=>{
     rl.innerHTML+=`<div class="rec-item"><strong>${d.name}:</strong> ${d.rec}</div>`;
   });
 
-  g("form-view").style.display="none";
-  g("result-view").style.display="block";
-  window.scrollTo({top:0,behavior:"smooth"});
+  // Guardar reporte en memoria para enviar a Sheets
+  lastReport={
+    reportNum: rnum,
+    inspDate: dateRaw,
+    generatedAt,
+    company: gv('company'), companyId: gv('company_id'),
+    industry: g('industry').value, location: gv('location'),
+    assetName: gv('asset_name'), assetTag: gv('asset_tag'),
+    assetType: g('asset_type').value, assetMaterial: gv('asset_material'),
+    assetDesc: gv('asset_desc'), inspGoal: gv('insp_goal'),
+    deliverables: gv('deliverables'), inspMode: g('insp_mode').value,
+    confidential: g('confidential').value,
+    pilotName: gv('pilot_name'), pilotEmail: gv('pilot_email'),
+    operatorCompany: gv('operator_company'), inspectorName: gv('inspector_name'),
+    siteContact: gv('site_contact'), sitePhone: gv('site_phone'),
+    numFlights: gv('num_flights'),
+    initialScore: pct, residualScore: residualPct, riskLevel,
+    highFactors: details.filter(d=>d.level==='alto').map(d=>d.name).join(', '),
+    medFactors: details.filter(d=>d.level==='medio').map(d=>d.name).join(', '),
+    lowFactors: details.filter(d=>d.level==='bajo').map(d=>d.name).join(', '),
+  };
+
+  g('save-success').style.display='none';
+  g('save-error').style.display='none';
+  g('result-view').style.display='block';
+  g('result-view').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function goBack(){
-  g("form-view").style.display="block";
-  g("result-view").style.display="none";
-  window.scrollTo({top:0,behavior:"smooth"});
+async function saveReport(){
+  const url=getSheetsUrl();
+  if(!url){
+    const e=g('save-error');
+    e.textContent='⚠ Configura la URL de Google Sheets primero (pestaña Configuración).';
+    e.style.display='block'; return;
+  }
+  const btn=g('btn-save');
+  btn.disabled=true; btn.textContent='Guardando…';
+  g('save-success').style.display='none';
+  g('save-error').style.display='none';
+  try{
+    await fetch(url,{method:'POST',body:JSON.stringify(lastReport)});
+    g('save-success').style.display='block';
+    btn.textContent='✅ Guardado';
+  }catch(err){
+    const e=g('save-error');
+    e.textContent='⚠ Error al guardar: '+err.message+'. Verifica la URL y los permisos.';
+    e.style.display='block';
+    btn.disabled=false; btn.textContent='💾 Guardar en Google Sheets';
+  }
 }
 
-// Fecha de hoy por defecto
-g("insp_date").valueAsDate=new Date();
+function resetForm(){
+  g('result-view').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ═══════════════════════════════════════════════
+// REPOSITORIO
+// ═══════════════════════════════════════════════
+async function loadRepo(){
+  const url=getSheetsUrl();
+  const body=g('repo-body');
+  if(!url){
+    body.innerHTML='<tr><td colspan="8" style="text-align:center;color:#aaa;padding:2rem">Configura Google Sheets primero (pestaña Configuración).</td></tr>';
+    return;
+  }
+  body.innerHTML='<tr><td colspan="8" style="text-align:center;color:#aaa;padding:2rem">Cargando…</td></tr>';
+  try{
+    const r=await fetch(url);
+    const d=await r.json();
+    if(!d.ok||!d.rows.length){
+      body.innerHTML='<tr><td colspan="8" style="text-align:center;color:#aaa;padding:2rem">No hay reportes guardados aún.</td></tr>';
+      g('repo-count').textContent='0 reportes';
+      return;
+    }
+    g('repo-count').textContent=d.rows.length+' reporte'+(d.rows.length!==1?'s':'');
+    body.innerHTML=d.rows.map(r=>{
+      const lvl=(r['Nivel Riesgo']||'').toLowerCase();
+      const bc=lvl==='bajo'?'b-low':lvl==='medio'?'b-med':'b-high';
+      const fecha=r['Fecha Inspección']?new Date(r['Fecha Inspección']+'T12:00:00').toLocaleDateString('es-CL'):'—';
+      return `<tr>
+        <td style="font-weight:600">${r['N° Reporte']||'—'}</td>
+        <td>${fecha}</td>
+        <td>${r['Empresa']||'—'}</td>
+        <td>${r['Activo']||'—'}</td>
+        <td>${r['Piloto']||'—'}</td>
+        <td style="font-weight:600">${r['Riesgo Inicial']!==undefined?r['Riesgo Inicial']+'/100':'—'}</td>
+        <td>${r['Riesgo Residual']!==undefined?r['Riesgo Residual']+'/100':'—'}</td>
+        <td><span class="badge tbl-badge ${bc}">${r['Nivel Riesgo']||'—'}</span></td>
+      </tr>`;
+    }).join('');
+  }catch(e){
+    body.innerHTML='<tr><td colspan="8" style="text-align:center;color:#c83030;padding:2rem">Error al cargar: '+e.message+'</td></tr>';
+  }
+}
+
+// ═══════════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════════
+async function loadDash(){
+  const url=getSheetsUrl();
+  const dc=g('dash-content');
+  if(!url){
+    dc.innerHTML='<div class="dash-empty">Configura Google Sheets primero (pestaña Configuración).<br><br><button class="btn btn-dark" onclick="showTab(\'cfg\')">Ir a Configuración</button></div>';
+    return;
+  }
+  dc.innerHTML='<div class="dash-empty">Cargando datos…</div>';
+  try{
+    const r=await fetch(url);
+    const d=await r.json();
+    if(!d.ok||!d.rows||!d.rows.length){
+      dc.innerHTML='<div class="dash-empty">No hay datos suficientes aún.<br>Guarda al menos un reporte para ver estadísticas.<br><br><button class="btn btn-secondary" onclick="showTab(\'form\')">Crear primera evaluación</button></div>';
+      return;
+    }
+    renderDash(d.rows);
+  }catch(e){
+    dc.innerHTML='<div class="dash-empty" style="color:#c83030">Error al cargar: '+e.message+'</div>';
+  }
+}
+
+function renderDash(rows){
+  // --- KPIs ---
+  const total=rows.length;
+  const pilots=[...new Set(rows.map(r=>r['Piloto']).filter(Boolean))];
+  const assets=[...new Set(rows.map(r=>r['Activo']).filter(Boolean))];
+  const totalFlights=rows.reduce((s,r)=>s+(parseInt(r['N° Vuelos'])||0),0);
+  const avgRisk=rows.length?Math.round(rows.reduce((s,r)=>s+(parseFloat(r['Riesgo Inicial'])||0),0)/rows.length):0;
+
+  // --- Distribución de riesgo ---
+  const riskDist={BAJO:0,MEDIO:0,ALTO:0};
+  rows.forEach(r=>{const n=(r['Nivel Riesgo']||'').toUpperCase();if(riskDist[n]!==undefined)riskDist[n]++;});
+
+  // --- Top activos ---
+  const assetCount={};
+  rows.forEach(r=>{const a=r['Activo'];if(a)assetCount[a]=(assetCount[a]||0)+1;});
+  const topAssets=Object.entries(assetCount).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const maxAsset=topAssets[0]?topAssets[0][1]:1;
+
+  // --- Top pilotos ---
+  const pilotCount={};
+  rows.forEach(r=>{const p=r['Piloto'];if(p)pilotCount[p]=(pilotCount[p]||0)+1;});
+  const topPilots=Object.entries(pilotCount).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const maxPilot=topPilots[0]?topPilots[0][1]:1;
+
+  // --- Vuelos por piloto ---
+  const pilotFlights={};
+  rows.forEach(r=>{const p=r['Piloto'],f=parseInt(r['N° Vuelos'])||0;if(p)pilotFlights[p]=(pilotFlights[p]||0)+f;});
+  const topFlights=Object.entries(pilotFlights).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const maxFlights=topFlights[0]?topFlights[0][1]:1;
+
+  // --- Evolución del riesgo en el tiempo ---
+  const byDate={};
+  rows.forEach(r=>{
+    const fd=r['Fecha Inspección'];
+    if(!fd)return;
+    const k=fd.slice(0,7); // YYYY-MM
+    if(!byDate[k])byDate[k]=[];
+    byDate[k].push(parseFloat(r['Riesgo Inicial'])||0);
+  });
+  const timeData=Object.entries(byDate).sort((a,b)=>a[0]<b[0]?-1:1).slice(-10).map(([k,v])=>({
+    label:k, avg:Math.round(v.reduce((s,x)=>s+x,0)/v.length)
+  }));
+  const maxAvg=timeData.length?Math.max(...timeData.map(t=>t.avg)):100;
+
+  // --- Factores de riesgo más frecuentes (ALTO) ---
+  const factorHighCount={};
+  rows.forEach(r=>{
+    const h=(r['Factores Alto']||'').split(',').map(s=>s.trim()).filter(Boolean);
+    h.forEach(f=>{factorHighCount[f]=(factorHighCount[f]||0)+1;});
+  });
+  const topFactors=Object.entries(factorHighCount).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const maxFactor=topFactors[0]?topFactors[0][1]:1;
+
+  // --- RENDER ---
+  const COLORS={BAJO:'#5a9e2f',MEDIO:'#e09020',ALTO:'#c83030'};
+  const BAR_COLORS=['#d83a1e','#c0392b','#e55039','#e74c3c','#a93226','#922b21','#cb4335','#b03a2e'];
+
+  function barChart(data,max,colors){
+    return data.map(([label,count],i)=>`
+      <div class="bar-row">
+        <div class="bar-row-label" title="${label}">${label}</div>
+        <div class="bar-row-track">
+          <div class="bar-row-fill" style="width:${Math.round((count/max)*100)}%;background:${Array.isArray(colors)?colors[i%colors.length]:colors}">
+            <span>${count}</span>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+
+  const donutTotal=total||1;
+  const donutPct=(n)=>Math.round((riskDist[n]/donutTotal)*100);
+  const svgDonut=(()=>{
+    const r=60,cx=70,cy=70,circ=2*Math.PI*r;
+    let offset=0;
+    const segs=['BAJO','MEDIO','ALTO'].map(n=>{
+      const pct=riskDist[n]/donutTotal;
+      const dash=pct*circ;
+      const seg=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${COLORS[n]}" stroke-width="22"
+        stroke-dasharray="${dash} ${circ-dash}" stroke-dashoffset="${-offset}" transform="rotate(-90 ${cx} ${cy})"/>`;
+      offset+=dash; return seg;
+    }).join('');
+    return `<svg width="140" height="140" viewBox="0 0 140 140">${segs}
+      <text x="70" y="66" text-anchor="middle" font-size="20" font-weight="700" fill="#1a1a1a">${total}</text>
+      <text x="70" y="82" text-anchor="middle" font-size="11" fill="#888">reportes</text></svg>`;
+  })();
+
+  const tlMax=maxAvg||1;
+  const timeline=timeData.map(t=>{
+    const lvl=t.avg<=35?'BAJO':t.avg<=65?'MEDIO':'ALTO';
+    return `<div class="tl-row">
+      <div class="tl-date">${t.label}</div>
+      <div class="tl-bar" style="width:${Math.round((t.avg/tlMax)*70)+10}%;background:${COLORS[lvl]}">${t.avg}/100</div>
+    </div>`;
+  }).join('');
+
+  g('dash-content').innerHTML=`
+    <div class="dash-stats">
+      <div class="stat-card"><div class="stat-num">${total}</div><div class="stat-label">Evaluaciones</div></div>
+      <div class="stat-card"><div class="stat-num">${pilots.length}</div><div class="stat-label">Pilotos únicos</div></div>
+      <div class="stat-card"><div class="stat-num">${assets.length}</div><div class="stat-label">Activos inspeccionados</div></div>
+      <div class="stat-card"><div class="stat-num">${totalFlights}</div><div class="stat-label">Vuelos totales</div></div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title">Distribución de nivel de riesgo</div>
+        <div class="donut-wrap">
+          ${svgDonut}
+          <div class="donut-legend">
+            ${['BAJO','MEDIO','ALTO'].map(n=>`
+            <div class="legend-item">
+              <div class="legend-dot" style="background:${COLORS[n]}"></div>
+              <span><strong>${riskDist[n]}</strong> ${n} (${donutPct(n)}%)</span>
+            </div>`).join('')}
+            <div style="font-size:12px;color:#aaa;margin-top:4px">Riesgo promedio: <strong>${avgRisk}/100</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title">Evolución del riesgo promedio por mes</div>
+        ${timeData.length?`<div class="timeline-chart">${timeline}</div>`:'<div style="color:#aaa;font-size:13px;padding:1rem 0">No hay suficientes datos con fecha para mostrar la evolución.</div>'}
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title">Activos más inspeccionados</div>
+        <div class="bar-chart">${topAssets.length?barChart(topAssets,maxAsset,BAR_COLORS):'<div style="color:#aaa;font-size:13px">Sin datos</div>'}</div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title">Pilotos con más misiones</div>
+        <div class="bar-chart">${topPilots.length?barChart(topPilots,maxPilot,'#1a1a1a'):'<div style="color:#aaa;font-size:13px">Sin datos</div>'}</div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title">Vuelos totales por piloto</div>
+        <div class="bar-chart">${topFlights.length?barChart(topFlights,maxFlights,'#555'):'<div style="color:#aaa;font-size:13px">Sin datos</div>'}</div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title">Factores de riesgo ALTO más frecuentes</div>
+        <div class="bar-chart">${topFactors.length?barChart(topFactors,maxFactor,'#c83030'):'<div style="color:#aaa;font-size:13px">Sin datos suficientes</div>'}</div>
+      </div>
+    </div>
+
+    <div style="text-align:right;margin-top:0.5rem">
+      <button class="btn btn-secondary" onclick="loadDash()">↻ Actualizar datos</button>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+document.getElementById('insp_date').valueAsDate=new Date();
+showTab('form');
+updateBanner();
+refreshCfgDisplay();
 </script>
 </body>
 </html>
